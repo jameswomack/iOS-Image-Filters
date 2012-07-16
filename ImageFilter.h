@@ -8,7 +8,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCMacros.h"
+
+@class ImageFilter;
+
+typedef enum {
+  IFResizeCrop,	// analogous to UIViewContentModeScaleAspectFill, i.e. "best fit" with no space around.
+  IFResizeCropStart,
+  IFResizeCropEnd,
+  IFResizeScale	// analogous to UIViewContentModeScaleAspectFit, i.e. scale down to fit, leaving space around if necessary.
+} IFResizingMethod;
 
 @interface UIImage (ImageFilter)
 
@@ -30,5 +38,15 @@
 - (UIImage*)toycamera;
 - (UIImage*)envy;
 - (UIImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams;
+- (UIImage *)imageToFitSize:(CGSize)fitSize method:(IFResizingMethod)resizeMethod;
+
+@property (weak) UIImage* previousState;
+@property (strong) ImageFilter* filter;
+
+@end
+
+@interface ImageFilter : NSObject
+
+@property (weak) UIImage* image;
 
 @end
