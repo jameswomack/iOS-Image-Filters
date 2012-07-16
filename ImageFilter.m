@@ -143,19 +143,19 @@ static ImageFilter* _filter;
   }
   
   // Create appropriately modified image.
-	UIImage *image = nil;
+	UIImage *img = nil;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
 	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 4.0) {
 		UIGraphicsBeginImageContextWithOptions(destRect.size, NO, 0.0); // 0.0 for scale means "correct scale for device's main screen".
 		CGImageRef sourceImg = CGImageCreateWithImageInRect([self CGImage], sourceRect); // cropping happens here.
-		image = [UIImage imageWithCGImage:sourceImg scale:0.0 orientation:self.imageOrientation]; // create cropped UIImage.
-		[image drawInRect:destRect]; // the actual scaling happens here, and orientation is taken care of automatically.
+		img = [UIImage imageWithCGImage:sourceImg scale:0.0 orientation:self.imageOrientation]; // create cropped UIImage.
+		[img drawInRect:destRect]; // the actual scaling happens here, and orientation is taken care of automatically.
 		CGImageRelease(sourceImg);
-		image = UIGraphicsGetImageFromCurrentImageContext();
+		img = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 	}
 #endif
-	if (!image) {
+	if (!img) {
 		// Try older method.
 		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 		CGContextRef context = CGBitmapContextCreate(NULL, fitSize.width, fitSize.height, 8, (fitSize.width * 4), 
@@ -166,16 +166,18 @@ static ImageFilter* _filter;
 		CGImageRef finalImage = CGBitmapContextCreateImage(context);	
 		CGContextRelease(context);
 		CGColorSpaceRelease(colorSpace);
-		image = [UIImage imageWithCGImage:finalImage];
+		img = [UIImage imageWithCGImage:finalImage];
 		CGImageRelease(finalImage);
 	}
 	
-  return image;
+  return img;
 }
 
 @end
 
 @implementation ImageFilter
+
+@synthesize image;
 
 - (UIImage*)sepia
 {    
@@ -205,7 +207,7 @@ static ImageFilter* _filter;
   static const CGFloat biasVector[4]  = { .2f, .2f, .2f, 0.0f };
   
   
-  UIImage *image = [self.image filter:@"CIColorMatrix" params:
+  UIImage *img = [self.image filter:@"CIColorMatrix" params:
                     [NSDictionary dictionaryWithObjectsAndKeys:
                      [CIVector vectorWithValues:redVector count:4],@"inputRVector", 
                      [CIVector vectorWithValues:greenVector count:4], @"inputGVector",
@@ -215,7 +217,7 @@ static ImageFilter* _filter;
                      nil]
                     ];
   
-  return [image filter:@"CIColorControls" params:
+  return [img filter:@"CIColorControls" params:
           [NSDictionary dictionaryWithObjectsAndKeys:
            [NSNumber numberWithFloat:.4], @"inputBrightness",
            [NSNumber numberWithFloat:3.0], @"inputContrast",
@@ -234,7 +236,7 @@ static ImageFilter* _filter;
   static const CGFloat biasVector[4]  = { .2f, .2f, .2f, 0.0f };
   
   
-  UIImage *image = [self.image filter:@"CIColorMatrix" params:
+  UIImage *img = [self.image filter:@"CIColorMatrix" params:
                     [NSDictionary dictionaryWithObjectsAndKeys:
                      [CIVector vectorWithValues:redVector count:4],@"inputRVector", 
                      [CIVector vectorWithValues:greenVector count:4], @"inputGVector",
@@ -244,7 +246,7 @@ static ImageFilter* _filter;
                      nil]
                     ];
   
-  return [image filter:@"CIColorControls" params:
+  return [img filter:@"CIColorControls" params:
           [NSDictionary dictionaryWithObjectsAndKeys:
            [NSNumber numberWithFloat:.4], @"inputBrightness",
            [NSNumber numberWithFloat:3.0], @"inputContrast",
@@ -325,16 +327,16 @@ static ImageFilter* _filter;
 
 - (UIImage*)crossProcess
 {
-  UIImage *image = [self.image filter:@"CIColorControls" params:
+  UIImage *img = [self.image filter:@"CIColorControls" params:
                     [NSDictionary dictionaryWithObjectsAndKeys:
                      [NSNumber numberWithFloat:.4], @"inputSaturation",
                      [NSNumber numberWithFloat:1], @"inputContrast",
                      nil]
                     ];
   
-  image = [image imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
+  img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
   
-  CIImage *backgroundImage = [CIImage imageWithCGImage:[image CGImage]];
+  CIImage *backgroundImage = [CIImage imageWithCGImage:[img CGImage]];
   UIImage *i = [Img(@"crossprocess") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
   CIImage *inputImage = [CIImage imageWithCGImage:[i CGImage]];
   return [self.image filter:@"CIOverlayBlendMode" params:
@@ -347,13 +349,13 @@ static ImageFilter* _filter;
 
 - (UIImage*)magichour
 {
-  UIImage *image = [self.image filter:@"CIColorControls" params:
+  UIImage *img = [self.image filter:@"CIColorControls" params:
                     [NSDictionary dictionaryWithObjectsAndKeys:
                      [NSNumber numberWithFloat:1], @"inputContrast",
                      nil]
                     ];
-  image = [image imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
-  CIImage *backgroundImage = [CIImage imageWithCGImage:[image CGImage]];
+  img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
+  CIImage *backgroundImage = [CIImage imageWithCGImage:[img CGImage]];
   UIImage *i = [Img(@"magichour") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
   CIImage *inputImage = [CIImage imageWithCGImage:[i CGImage]];
   return [self.image filter:@"CIMultiplyBlendMode" params:
@@ -367,8 +369,8 @@ static ImageFilter* _filter;
 
 - (UIImage*)toycamera
 {
-  UIImage *image = [self.image imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
-  CIImage *backgroundImage = [CIImage imageWithCGImage:[image CGImage]];
+  UIImage *img = [self.image imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
+  CIImage *backgroundImage = [CIImage imageWithCGImage:[img CGImage]];
   UIImage *i = [Img(@"toycamera") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
   CIImage *inputImage = [CIImage imageWithCGImage:[i CGImage]];
   return [self.image filter:@"CIOverlayBlendMode" params:
@@ -402,8 +404,8 @@ static ImageFilter* _filter;
   
   if (theParams) {
     for (int i = 0; i<[[theParams allKeys] count]; i++) {
-      [filter setValue:CFArrayGetValueAtIndex( (CFArrayRef)[theParams allValues],(CFIndex) i) 
-                forKey:CFArrayGetValueAtIndex( (CFArrayRef)[theParams allKeys],(CFIndex) i) ];
+      [filter setValue:[theParams.allValues objectAtIndex:i]
+                forKey:[theParams.allKeys objectAtIndex:i]];
     }
   }
   
