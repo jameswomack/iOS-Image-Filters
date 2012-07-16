@@ -39,7 +39,7 @@
 
 - (IBAction)blueMood:(UIButton *)sender
 {
-  imageView.image = imageView.image.blueMood;
+  imageView.image = imageView.image.crossProcess;
 }
 
 - (IBAction)previousState:(UIButton *)sender

@@ -197,9 +197,7 @@ static ImageFilter* _filter;
 }
 
 - (UIImage*)sunkissed
-{    
-  //CIColor *marigold = [CIColor colorWithRed:216/255.0 green:166/255.0 blue:52/255.0 alpha:1.0];
-  
+{      
   static const CGFloat redVector[4]   = { 1.f, 0.0f, 0.0f, 0.0f };
   static const CGFloat greenVector[4] = { 0.0f, .6f, 0.0f, 0.0f };
   static const CGFloat blueVector[4]  = { 0.0f, 0.0f, .3f, 0.0f };
