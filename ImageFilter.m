@@ -177,8 +177,6 @@ static ImageFilter* _filter;
 
 @implementation ImageFilter
 
-@synthesize image;
-
 - (UIImage*)sepia
 {    
   return [self.image filter:@"CISepiaTone" params:
@@ -226,9 +224,7 @@ static ImageFilter* _filter;
 }
 
 - (UIImage*)polarize
-{    
-  //CIColor *marigold = [CIColor colorWithRed:216/255.0 green:166/255.0 blue:52/255.0 alpha:1.0];
-  
+{
   static const CGFloat redVector[4]   = { 1.f, 0.0f, 0.0f, 0.0f };
   static const CGFloat greenVector[4] = { 0.0f, .5f, 0.0f, 0.0f };
   static const CGFloat blueVector[4]  = { 0.0f, 0.0f, 1.f, 0.0f };
@@ -390,6 +386,25 @@ static ImageFilter* _filter;
            [NSNumber numberWithFloat:amount], @"inputContrast", 
            nil]
           ];
+}
+
+- (UIImage*)sharpen:(double)amount
+{
+    return [self.image filter:@"CISharpenLuminance" params:
+            [NSDictionary dictionaryWithObjectsAndKeys:
+             [NSNumber numberWithFloat:amount], @"inputSharpness", //0.3
+             nil]
+            ];
+}
+
+- (UIImage*)unsharpMaskWithRadius:(double)radius andIntensity:(double)intensity
+{
+    return [self.image filter:@"CIUnsharpMask" params:
+            [NSDictionary dictionaryWithObjectsAndKeys:
+             [NSNumber numberWithFloat:radius], @"inputRadius", //4
+             [NSNumber numberWithFloat:intensity], @"inputIntensity", //1
+             nil]
+            ];
 }
 
 - (UIImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams {

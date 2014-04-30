@@ -3,48 +3,32 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 7/16/12.
-//  Copyright (c) 2012 James Womack. All rights reserved.
+//  Copyright (c) 2012—2014 James Womack. All rights reserved.
 //
 
 #import "ViewController.h"
 #import "ImageFilter.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
-@synthesize imageView;
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+  if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
       return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
   } else {
       return YES;
   }
 }
 
-- (IBAction)blueMood:(UIButton *)sender
-{
-  imageView.image = imageView.image.crossProcess;
+- (IBAction)sharpify:(UIButton *)sender
+{    
+  self.imageView.image = [self.imageView.image unsharpMaskWithRadius:36.f andIntensity:4.f];
+  [self.imageView setNeedsDisplay];
 }
 
 - (IBAction)previousState:(UIButton *)sender
 {
-  imageView.image = imageView.image.previousState;
+  self.imageView.image = self.imageView.image.previousState;
 }
 
 @end

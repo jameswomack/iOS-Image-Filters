@@ -3,7 +3,7 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 7/16/12.
-//  Copyright (c) 2012 James Womack. All rights reserved.
+//  Copyright (c) 2012—2014 James Womack. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
-- (IBAction)blueMood:(UIButton *)sender;
+- (IBAction)sharpify:(UIButton *)sender;
 - (IBAction)previousState:(UIButton *)sender;
 
 

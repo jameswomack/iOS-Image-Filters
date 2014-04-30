@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B78B36819108ADB00BEB3D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */; };
 		59776F0215B4035300433DE9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0115B4035300433DE9 /* UIKit.framework */; };
 		59776F0415B4035300433DE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0315B4035300433DE9 /* Foundation.framework */; };
 		59776F0615B4035300433DE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0515B4035300433DE9 /* CoreGraphics.framework */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		59776EFD15B4035300433DE9 /* ImageFilterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59776F0115B4035300433DE9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59776F0315B4035300433DE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B78B3641910815500BEB3D4 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				59776F1315B4035300433DE9 /* MainStoryboard_iPhone.storyboard */,
+				59776F1615B4035300433DE9 /* MainStoryboard_iPad.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		59776EF215B4035300433DE9 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +115,6 @@
 			children = (
 				59776F1015B4035300433DE9 /* AppDelegate.h */,
 				59776F1115B4035300433DE9 /* AppDelegate.m */,
-				59776F1315B4035300433DE9 /* MainStoryboard_iPhone.storyboard */,
-				59776F1615B4035300433DE9 /* MainStoryboard_iPad.storyboard */,
 				59776F1915B4035300433DE9 /* ViewController.h */,
 				59776F1A15B4035300433DE9 /* ViewController.m */,
 				59776F0815B4035300433DE9 /* Supporting Files */,
@@ -116,6 +125,7 @@
 		59776F0815B4035300433DE9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1B78B3641910815500BEB3D4 /* Storyboards */,
 				59776F2415B404F500433DE9 /* Images */,
 				59776F2115B4037A00433DE9 /* ImageFilter */,
 				59776F0915B4035300433DE9 /* ImageFilterExample-Info.plist */,
@@ -138,6 +148,7 @@
 		59776F2415B404F500433DE9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */,
 				59776F2C15B413C000433DE9 /* crossprocess.png */,
 				59776F2D15B413C000433DE9 /* crossprocess@2x.png */,
 				59776F2E15B413C000433DE9 /* magichour.png */,
@@ -176,7 +187,7 @@
 		59776EF415B4035300433DE9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "James Womack";
 			};
 			buildConfigurationList = 59776EF715B4035300433DE9 /* Build configuration list for PBXProject "ImageFilterExample" */;
@@ -206,6 +217,7 @@
 				59776F1815B4035300433DE9 /* MainStoryboard_iPad.storyboard in Resources */,
 				59776F2715B404F500433DE9 /* north-park_sunflower.jpg in Resources */,
 				59776F2815B404F500433DE9 /* north-park_sunflower@2x.jpg in Resources */,
+				1B78B36819108ADB00BEB3D4 /* Default-568h@2x.png in Resources */,
 				59776F3215B413C000433DE9 /* crossprocess.png in Resources */,
 				59776F3315B413C000433DE9 /* crossprocess@2x.png in Resources */,
 				59776F3415B413C000433DE9 /* magichour.png in Resources */,
@@ -280,6 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

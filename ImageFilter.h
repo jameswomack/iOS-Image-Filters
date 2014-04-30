@@ -9,7 +9,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class ImageFilter;
 
 typedef enum {
   IFResizeCrop,	// analogous to UIViewContentModeScaleAspectFill, i.e. "best fit" with no space around.
@@ -18,9 +17,10 @@ typedef enum {
   IFResizeScale	// analogous to UIViewContentModeScaleAspectFit, i.e. scale down to fit, leaving space around if necessary.
 } IFResizingMethod;
 
-@interface UIImage (ImageFilter)
+@protocol NGFilterProtocol <NSObject>
 
 /* Filters */
+@optional
 - (UIImage*)sepia;
 - (UIImage*)invert;
 - (UIImage*)vibrant:(double)amount;
@@ -37,16 +37,24 @@ typedef enum {
 - (UIImage*)magichour;
 - (UIImage*)toycamera;
 - (UIImage*)envy;
+- (UIImage*)sharpen:(double)amount;
+- (UIImage*)unsharpMaskWithRadius:(double)radius andIntensity:(double)intensity;
 - (UIImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams;
 - (UIImage *)imageToFitSize:(CGSize)fitSize method:(IFResizingMethod)resizeMethod;
 
-@property (weak) UIImage* previousState;
-@property (strong) ImageFilter* filter;
+@end
+
+@class ImageFilter;
+
+@interface UIImage (ImageFilter) <NGFilterProtocol>
+
+@property (weak, nonatomic) UIImage* previousState;
+@property (strong, nonatomic) ImageFilter* filter;
 
 @end
 
 @interface ImageFilter : NSObject
 
-@property (weak) UIImage* image;
+@property (weak, nonatomic) UIImage* image;
 
 @end
