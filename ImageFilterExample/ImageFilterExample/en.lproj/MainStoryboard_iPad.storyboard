@@ -22,7 +22,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="sharpify:" destination="2" eventType="touchUpInside" id="M2a-Os-5Ab"/>
+                                    <action selector="filter:" destination="2" eventType="touchUpInside" id="Esl-U9-2tj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="stS-vs-DsT">
@@ -31,7 +31,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="previousState:" destination="2" eventType="touchUpInside" id="Vuw-DP-tMX"/>
+                                    <action selector="revert:" destination="2" eventType="touchUpInside" id="tDR-qW-C7Q"/>
                                 </connections>
                             </button>
                         </subviews>

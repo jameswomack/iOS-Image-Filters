@@ -13,28 +13,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="north-park_sunflower.jpg" id="UQU-S6-qs4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="original(crop).jpg" id="UQU-S6-qs4">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ich-Hw-91b">
-                                <rect key="frame" x="20" y="358" width="280" height="40"/>
-                                <state key="normal" title="Blue Mood">
+                                <rect key="frame" x="20" y="383" width="280" height="40"/>
+                                <state key="normal" title="Filter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="sharpify:" destination="2" eventType="touchUpInside" id="dnD-Ig-sER"/>
+                                    <action selector="filter:" destination="2" eventType="touchUpInside" id="5pt-KR-OFt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mwt-lH-j0d">
-                                <rect key="frame" x="20" y="408.5" width="280" height="40"/>
-                                <state key="normal" title="Previous State">
+                                <rect key="frame" x="20" y="433.5" width="280" height="40"/>
+                                <state key="normal" title="Revert">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="previousState:" destination="2" eventType="touchUpInside" id="AET-bB-ll7"/>
+                                    <action selector="revert:" destination="2" eventType="touchUpInside" id="6Fc-H7-kWB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,7 +50,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="north-park_sunflower.jpg" width="1296" height="968"/>
+        <image name="original(crop).jpg" width="744" height="1280"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

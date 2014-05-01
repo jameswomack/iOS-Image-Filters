@@ -8,33 +8,36 @@
 //
 
 #import "ImageFilter.h"
-#import <CoreImage/CoreImage.h>
+#import "UIImage+Filter.h"
+#import "CIFilter+Filter.h"
+#import "CIImage+Filter.h"
+#import "ImageFilterCache.h"
+#import <Accelerate/Accelerate.h>
 #import <mach/mach_time.h>
 #import <objc/message.h>
 
 #ifndef Img
-#define Img(name) [UIImage imageNamed:name]
+#define Img(name) [NGImage imageNamed:name]
 #endif
 
-@implementation UIImage (ImageFilter)
+
+@implementation NGImage (ImageFilter)
 
 @dynamic previousState, filter;
 
-static UIImage* _previousState;
+static NGImage* _previousState;
 static ImageFilter* _filter;
 
-- (UIImage*)previousState
-{
+- (NGImage*)previousState {
+  _filter = nil;
   return _previousState?_previousState:self;
 }
 
-- (void)setPreviousState:(UIImage *)previousState
-{
+- (void)setPreviousState:(NGImage *)previousState {
   _previousState = previousState;
 }
 
-- (ImageFilter*)filter
-{
+- (ImageFilter*)filter {
   if (!_filter)
   {
     _filter = ImageFilter.new;
@@ -43,31 +46,27 @@ static ImageFilter* _filter;
   return _filter;
 }
 
-- (void)setFilter:(ImageFilter *)filter
-{
+- (void)setFilter:(ImageFilter *)filter {
   _filter = filter;
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
-{
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
 	NSMethodSignature *sig;
 	sig = [self.filter methodSignatureForSelector:sel];
 	return sig;
 }
 
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
+- (BOOL)respondsToSelector:(SEL)aSelector {
   
 	return [self.filter respondsToSelector:aSelector];
 }
 
-- (void)forwardInvocation:(NSInvocation *)invocation 
-{
+- (void)forwardInvocation:(NSInvocation *)invocation  {
 	_previousState = self;
 	[invocation invokeWithTarget:self.filter];
 }
 
-- (UIImage *)imageToFitSize:(CGSize)fitSize method:(IFResizingMethod)resizeMethod {
+- (NGImage *)imageToFitSize:(CGSize)fitSize method:(IFResizingMethod)resizeMethod {
 	float imageScaleFactor = 1.0;
   
 	if ([self respondsToSelector:@selector(scale)]) {
@@ -143,12 +142,12 @@ static ImageFilter* _filter;
   }
   
   // Create appropriately modified image.
-	UIImage *img = nil;
+	NGImage *img = nil;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
 	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 4.0) {
 		UIGraphicsBeginImageContextWithOptions(destRect.size, NO, 0.0); // 0.0 for scale means "correct scale for device's main screen".
 		CGImageRef sourceImg = CGImageCreateWithImageInRect([self CGImage], sourceRect); // cropping happens here.
-		img = [UIImage imageWithCGImage:sourceImg scale:0.0 orientation:self.imageOrientation]; // create cropped UIImage.
+		img = [NGImage imageWithCGImage:sourceImg scale:.0 orientation:self.imageOrientation]; // create cropped NGImage.
 		[img drawInRect:destRect]; // the actual scaling happens here, and orientation is taken care of automatically.
 		CGImageRelease(sourceImg);
 		img = UIGraphicsGetImageFromCurrentImageContext();
@@ -158,15 +157,14 @@ static ImageFilter* _filter;
 	if (!img) {
 		// Try older method.
 		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-		CGContextRef context = CGBitmapContextCreate(NULL, fitSize.width, fitSize.height, 8, (fitSize.width * 4), 
-                                                 colorSpace, kCGImageAlphaPremultipliedLast);
+		CGContextRef context = CGBitmapContextCreate(NULL, fitSize.width, fitSize.height, 8, (fitSize.width * 4), colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
 		CGImageRef sourceImg = CGImageCreateWithImageInRect([self CGImage], sourceRect);
 		CGContextDrawImage(context, destRect, sourceImg);
 		CGImageRelease(sourceImg);
 		CGImageRef finalImage = CGBitmapContextCreateImage(context);	
 		CGContextRelease(context);
 		CGColorSpaceRelease(colorSpace);
-		img = [UIImage imageWithCGImage:finalImage];
+		img = [NGImage imageWithCGImage:finalImage];
 		CGImageRelease(finalImage);
 	}
 	
@@ -177,262 +175,286 @@ static ImageFilter* _filter;
 
 @implementation ImageFilter
 
-- (UIImage*)sepia
-{    
-  return [self.image filter:@"CISepiaTone" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:0.9], @"inputIntensity", 
-           nil]
-          ];
+- (NGImage*)sepia {
+  return [self.image filter:@"CISepiaTone" params:@{kCIInputIntensityKey: @0.9f}];
 }
 
-- (UIImage*)blueMood
-{    
-  return [self.image filter:@"CIFalseColor" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [CIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:1.0], @"inputColor0", 
-           [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], @"inputColor1", 
-           nil]
-          ];
+- (NGImage*)blueMood {   
+  return [self.image filter:@"CIFalseColor"
+                     params:@{@"inputColor0": [CIColor colorWithRed:.0 green:.0 blue:1.0 alpha:1.0], @"inputColor1": [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]}];
 }
 
-- (UIImage*)sunkissed
-{      
-  static const CGFloat redVector[4]   = { 1.f, 0.0f, 0.0f, 0.0f };
-  static const CGFloat greenVector[4] = { 0.0f, .6f, 0.0f, 0.0f };
-  static const CGFloat blueVector[4]  = { 0.0f, 0.0f, .3f, 0.0f };
-  static const CGFloat alphaVector[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-  static const CGFloat biasVector[4]  = { .2f, .2f, .2f, 0.0f };
+- (NGImage *)colorMatrix:(NSArray *)colorMatrix {
+  CGFloat redVector[4]   = { [colorMatrix[0] floatValue], 0.0f, 0.0f, 0.0f };
+  CGFloat greenVector[4] = { 0.0f, [colorMatrix[1] floatValue], 0.0f, 0.0f };
+  CGFloat blueVector[4]  = { 0.0f, 0.0f, [colorMatrix[2] floatValue], 0.0f };
+  CGFloat alphaVector[4] = { 0.0f, 0.0f, 0.0f, [colorMatrix[3] floatValue] };
+  CGFloat bias = [colorMatrix[4] floatValue];
+  CGFloat biasVector[4]  = { bias, bias, bias, 0.0f };
   
   
-  UIImage *img = [self.image filter:@"CIColorMatrix" params:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                     [CIVector vectorWithValues:redVector count:4],@"inputRVector", 
-                     [CIVector vectorWithValues:greenVector count:4], @"inputGVector",
-                     [CIVector vectorWithValues:blueVector count:4],@"inputBVector", 
-                     [CIVector vectorWithValues:alphaVector count:4],@"inputAVector", 
-                     [CIVector vectorWithValues:biasVector count:4],@"inputBiasVector", 
-                     nil]
-                    ];
-  
-  return [img filter:@"CIColorControls" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:.4], @"inputBrightness",
-           [NSNumber numberWithFloat:3.0], @"inputContrast",
-           nil]
-          ];
+  return [self.image filter:@"CIColorMatrix"
+                     params:@{@"inputRVector":   [CIVector vectorWithValues:redVector   count:4],
+                              @"inputGVector":   [CIVector vectorWithValues:greenVector count:4],
+                              @"inputBVector":   [CIVector vectorWithValues:blueVector  count:4],
+                              @"inputAVector":   [CIVector vectorWithValues:alphaVector count:4],
+                              @"inputBiasVector":[CIVector vectorWithValues:biasVector  count:4]}];
 }
 
-- (UIImage*)polarize
-{
-  static const CGFloat redVector[4]   = { 1.f, 0.0f, 0.0f, 0.0f };
-  static const CGFloat greenVector[4] = { 0.0f, .5f, 0.0f, 0.0f };
-  static const CGFloat blueVector[4]  = { 0.0f, 0.0f, 1.f, 0.0f };
-  static const CGFloat alphaVector[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-  static const CGFloat biasVector[4]  = { .2f, .2f, .2f, 0.0f };
+- (NGImage*)sunkissed {
+  NGImage *img = [self colorMatrix:@[@1.f,@.6f,@.3f,@1.f,@.2f]];
   
-  
-  UIImage *img = [self.image filter:@"CIColorMatrix" params:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                     [CIVector vectorWithValues:redVector count:4],@"inputRVector", 
-                     [CIVector vectorWithValues:greenVector count:4], @"inputGVector",
-                     [CIVector vectorWithValues:blueVector count:4],@"inputBVector", 
-                     [CIVector vectorWithValues:alphaVector count:4],@"inputAVector", 
-                     [CIVector vectorWithValues:biasVector count:4],@"inputBiasVector", 
-                     nil]
-                    ];
-  
-  return [img filter:@"CIColorControls" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:.4], @"inputBrightness",
-           [NSNumber numberWithFloat:3.0], @"inputContrast",
-           nil]
-          ];
+  return [img filter:@"CIColorControls"
+              params:@{kCIInputBrightnessKey: @.4f, kCIInputContrastKey: @3.0f}];
 }
 
-- (UIImage*)envy
-{    
-  return [self.image filter:@"CIFalseColor" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [CIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1.0], @"inputColor0", 
-           [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], @"inputColor1", 
-           nil]
-          ];
+- (NGImage*)polarize {
+  NGImage *img = [self colorMatrix:@[@1.f,@.5f,@1.f,@1.f,@.2f]];
+  
+  return [img filter:@"CIColorControls" params:@{kCIInputBrightnessKey: @.4f, kCIInputContrastKey: @3.0f}];
 }
 
-- (UIImage*)invert
-{    
+- (NGImage*)envy {   
+  return [self.image filter:@"CIFalseColor"
+                     params:@{@"inputColor0": [CIColor colorWithRed:.0 green:1.0 blue:.0 alpha:1.0], @"inputColor1": [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]}];
+}
+
+- (NGImage*)invert {   
   return [self.image filter:@"CIColorInvert" params:nil];
 }
 
-- (UIImage*)colorize:(double)amount
-{    
-  return [self.image filter:@"CIColorMonochrome" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:amount], @"inputIntensity", 
-           nil]
-          ];
+- (NGImage*)colorize:(float)amount {   
+  return [self.image filter:@"CIColorMonochrome" params:@{kCIInputIntensityKey: @(amount)}];
 }
 
-- (UIImage*)exposure:(double)amount
-{        
-	return [self.image filter:@"CIExposureAdjust" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:amount], @"inputEV", 
-           nil]
-          ];
+- (NGImage*)exposure:(float)amount {       
+	return [self.image filter:@"CIExposureAdjust" params:@{@"inputEV": @(amount)}];
 }
 
-- (UIImage*)edges:(double)amount
-{    
-  return [self.image filter:@"CIEdges" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:amount], @"inputIntensity", 
-           nil]
-          ];
+- (NGImage*)edges:(float)amount {   
+  return [self.image filter:@"CIEdges" params:@{kCIInputIntensityKey: @(amount)}];
 }
 
 
-- (UIImage*)brightness:(double)amount
-{
-  return [self.image filter:@"CIColorControls" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:amount], @"inputBrightness", 
-           nil]
-          ];
+- (NGImage*)brightness:(float)amount {
+  return [self.image filter:@"CIColorControls"
+                     params:@{kCIInputBrightnessKey: @(amount), kCIInputContrastKey: @1.05f}];
 }
 
-- (UIImage*)vibrant:(double)amount
-{
-  amount = amount*2;
-  return [self.image filter:@"CIColorControls" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:amount], @"inputSaturation", 
-           nil]
-          ];
+- (NGImage*)brightness:(float)brightness andConstrast:(float)contrast {
+  return [self.image filter:@"CIColorControls"
+                     params:@{kCIInputBrightnessKey: @(brightness), kCIInputContrastKey: @(contrast)}];
 }
 
-- (UIImage*)blackAndWhite
-{
-  return [self.image filter:@"CIColorControls" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:0], @"inputSaturation", 
-           nil]
-          ];
-}
+static unsigned char morphological_kernel[9] = {
+  1, 1, 1,
+  1, 1, 1,
+  1, 1, 1
+};
 
-- (UIImage*)crossProcess
-{
-  UIImage *img = [self.image filter:@"CIColorControls" params:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                     [NSNumber numberWithFloat:.4], @"inputSaturation",
-                     [NSNumber numberWithFloat:1], @"inputContrast",
-                     nil]
-                    ];
+- (NGImage *)equalization {
+  const size_t width = self.image.size.width;
+  const size_t height = self.image.size.height;
+  const size_t bytesPerRow = width * 4;
   
-  img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
+  CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+  CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+  CGColorSpaceRelease(space);
+  if (!bmContext)
+    return nil;
   
-  CIImage *backgroundImage = [CIImage imageWithCGImage:[img CGImage]];
-  UIImage *i = [Img(@"crossprocess") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
-  CIImage *inputImage = [CIImage imageWithCGImage:[i CGImage]];
-  return [self.image filter:@"CIOverlayBlendMode" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           inputImage, @"inputImage",
-           backgroundImage, @"inputBackgroundImage",
-           nil]
-          ];
-}
-
-- (UIImage*)magichour
-{
-  UIImage *img = [self.image filter:@"CIColorControls" params:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                     [NSNumber numberWithFloat:1], @"inputContrast",
-                     nil]
-                    ];
-  img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
-  CIImage *backgroundImage = [CIImage imageWithCGImage:[img CGImage]];
-  UIImage *i = [Img(@"magichour") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
-  CIImage *inputImage = [CIImage imageWithCGImage:[i CGImage]];
-  return [self.image filter:@"CIMultiplyBlendMode" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           inputImage, @"inputImage",
-           backgroundImage, @"inputBackgroundImage",
-           nil]
-          ];
-}
-
-
-- (UIImage*)toycamera
-{
-  UIImage *img = [self.image imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
-  CIImage *backgroundImage = [CIImage imageWithCGImage:[img CGImage]];
-  UIImage *i = [Img(@"toycamera") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
-  CIImage *inputImage = [CIImage imageWithCGImage:[i CGImage]];
-  return [self.image filter:@"CIOverlayBlendMode" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           inputImage, @"inputImage",
-           backgroundImage, @"inputBackgroundImage",
-           nil]
-          ];
-}
-
-
-- (UIImage*)contrast:(double)amount
-{
-  amount = amount*4;
-  return [self.image filter:@"CIColorControls" params:
-          [NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithFloat:amount], @"inputContrast", 
-           nil]
-          ];
-}
-
-- (UIImage*)sharpen:(double)amount
-{
-    return [self.image filter:@"CISharpenLuminance" params:
-            [NSDictionary dictionaryWithObjectsAndKeys:
-             [NSNumber numberWithFloat:amount], @"inputSharpness", //0.3
-             nil]
-            ];
-}
-
-- (UIImage*)unsharpMaskWithRadius:(double)radius andIntensity:(double)intensity
-{
-    return [self.image filter:@"CIUnsharpMask" params:
-            [NSDictionary dictionaryWithObjectsAndKeys:
-             [NSNumber numberWithFloat:radius], @"inputRadius", //4
-             [NSNumber numberWithFloat:intensity], @"inputIntensity", //1
-             nil]
-            ];
-}
-
-- (UIImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams {
-  CIImage *beginImage = [CIImage imageWithCGImage:self.image.CGImage];
-  CIContext *context = [CIContext 
-                        contextWithOptions:[NSDictionary 
-                                            dictionaryWithObject:[NSNumber 
-                                                                  numberWithBool:NO]   forKey:kCIContextUseSoftwareRenderer]];
-  CIFilter *filter = [CIFilter filterWithName:filterName];
+  CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, self.image.CGImage);
   
-  [filter setValue:beginImage forKey: kCIInputImageKey];
-  
-  if (theParams) {
-    for (int i = 0; i<[[theParams allKeys] count]; i++) {
-      [filter setValue:[theParams.allValues objectAtIndex:i]
-                forKey:[theParams.allKeys objectAtIndex:i]];
-    }
+  UInt8* data = (UInt8*)CGBitmapContextGetData(bmContext);
+  if (!data) {
+    CGContextRelease(bmContext);
+    return nil;
   }
   
-  CIImage *outputImage = (CIImage *)objc_msgSend(filter, @selector(outputImage));
+  const size_t n = sizeof(UInt8) * width * height * 4;
+  void* outt = malloc(n);
+  vImage_Buffer src = {data, height, width, bytesPerRow};
+  vImage_Buffer dest = {outt, height, width, bytesPerRow};
+  vImageDilate_ARGB8888(&src, &dest, 0, 0, morphological_kernel, 3, 3, kvImageCopyInPlace);
   
-  CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
+  memcpy(data, outt, n);
   
-  UIImage *newImg = [UIImage imageWithCGImage:cgimg];
+  free(outt);
   
-  CGImageRelease(cgimg);
+  CGImageRef dilatedImageRef = CGBitmapContextCreateImage(bmContext);
+  NGImage* dilated = [NGImage imageWithCGImage:dilatedImageRef];
   
-	return newImg; 
+  CGImageRelease(dilatedImageRef);
+  CGContextRelease(bmContext);
+  
+  return dilated;
+}
+
+- (NGImage *)erode {
+  const size_t width = self.image.size.width;
+  const size_t height = self.image.size.height;
+  const size_t bytesPerRow = width * 4;
+  
+  CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+  CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, bytesPerRow, space, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+  CGColorSpaceRelease(space);
+  if (!bmContext)
+    return nil;
+  
+  CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, self.image.CGImage);
+  
+  UInt8* data = (UInt8*)CGBitmapContextGetData(bmContext);
+  if (!data) {
+    CGContextRelease(bmContext);
+    return nil;
+  }
+  
+  const size_t n = sizeof(UInt8) * width * height * 4;
+  void* outt = malloc(n);
+  vImage_Buffer src = {data, height, width, bytesPerRow};
+  vImage_Buffer dest = {outt, height, width, bytesPerRow};
+  
+  vImageErode_ARGB8888(&src, &dest, 0, 0, morphological_kernel, 3, 3, kvImageCopyInPlace);
+  
+  memcpy(data, outt, n);
+  
+  free(outt);
+  
+  CGImageRef erodedImageRef = CGBitmapContextCreateImage(bmContext);
+  NGImage* eroded = [NGImage imageWithCGImage:erodedImageRef];
+  
+  CGImageRelease(erodedImageRef);
+  CGContextRelease(bmContext);
+  
+  return eroded;
+}
+
+- (NGImage*)vibrant:(float)amount {
+  return [self.image filter:@"CIColorControls" params:@{kCIInputSaturationKey: @(amount*2)}];
+}
+
+- (NGImage *)sharpify {
+  NGImage *image = [self gamma:.85f];
+  image = [self bloomWithRadius:1.7f andIntensity:2.2f];
+  image = [self blur:.28f];
+  image = [self unsharpMaskWithRadius:.6f andIntensity:4.f];
+  image = [self brightness:.08f andConstrast:1.33f];
+  return image;
+}
+
+- (NGImage*)blur:(float)amount{
+  return [self.image filter:@"CIGaussianBlur" params:@{kCIInputRadiusKey: @(amount)}];
+}
+
+- (NGImage*)bloomWithRadius:(float)radius andIntensity:(float)intensity{
+  return [self.image filter:@"CIBloom"
+                     params:@{kCIInputRadiusKey: @(radius), kCIInputIntensityKey: @(intensity)}];
+}
+
+- (NGImage*)gloomWithRadius:(float)radius andIntensity:(float)intensity{
+  return [self.image filter:@"CIGloom"
+                     params:@{kCIInputRadiusKey: @(radius), kCIInputIntensityKey: @(intensity)}];
+}
+
+- (NGImage*)unsharpMaskWithRadius:(float)radius andIntensity:(float)intensity {
+  return [self.image filter:@"CIUnsharpMask"
+                     params:@{kCIInputRadiusKey: @(radius), kCIInputIntensityKey: @(intensity)}];
+}
+
+- (NGImage*)blackAndWhite {
+  return [self.image filter:@"CIColorControls" params:@{kCIInputSaturationKey: @0.0f}];
+}
+
+- (NGImage*)crossProcess {
+  NGImage *img = [self.image filter:@"CIColorControls"
+                             params:@{kCIInputSaturationKey: @.4f, kCIInputContrastKey: @1.0f}];
+  
+  img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
+  
+  CIImage *backgroundImage = [CIImage imageWithCGImage:[img CGImage]];
+  NGImage *i = [Img(@"crossprocess") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
+  CIImage *inputImage = [CIImage imageWithCGImage:i.CGImage];
+  return [self.image filter:@"CIOverlayBlendMode"
+                     params:@{kCIInputImageKey: inputImage, kCIInputBackgroundImageKey: backgroundImage}];
+}
+
+- (NGImage*)magichour {
+  NGImage *img = [self.image filter:@"CIColorControls" params:@{kCIInputContrastKey: @1.0f}];
+  img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
+  CIImage *backgroundImage = [CIImage imageWithCGImage:img.CGImage];
+  NGImage *i = [Img(@"magichour") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
+  CIImage *inputImage = [CIImage imageWithCGImage:i.CGImage];
+  return [self.image filter:@"CIMultiplyBlendMode"
+                     params:@{kCIInputImageKey: inputImage, kCIInputBackgroundImageKey: backgroundImage}];
+}
+
+
+- (NGImage*)toycamera {
+  CGSize size = self.image.size;
+  CGFloat scale = self.image.scale;
+  
+  NGImage *img = [self.image imageToFitSize:CGSizeMake(size.width*scale, size.height*scale)
+                                     method:IFResizeScale];
+  
+  CIImage *backgroundImage = [CIImage imageWithCGImage:img.CGImage];
+  
+  NGImage *i = [Img(@"toycamera") imageToFitSize:CGSizeMake(size.width*scale, size.height*scale)
+                                          method:IFResizeCrop];
+  
+  CIImage *inputImage = [CIImage imageWithCGImage:i.CGImage];
+  
+  return [self.image filter:@"CIOverlayBlendMode"
+                     params:@{kCIInputImageKey: inputImage, kCIInputBackgroundImageKey: backgroundImage}];
+}
+
+
+- (NGImage*)contrast:(float)amount {
+  return [self.image filter:@"CIColorControls"
+                     params:@{kCIInputContrastKey: @(amount*4)}];
+}
+
+- (NGImage*)gamma:(float)amount {
+  return [self.image filter:@"CIGammaAdjust"
+                     params:@{@"inputPower": @(amount)}];
+}
+
+- (NGImage*)sharpen:(float)amount {
+    return [self.image filter:@"CISharpenLuminance"
+                       params:@{kCIInputSharpnessKey: @(amount)}];
+}
+
+- (NGImage*)posterize:(float)amount {
+  return [self.image filter:@"CIColorPosterize" params:@{@"inputLevels": @(amount)}];
+}
+
+- (NGImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams {
+  NGImage *uiImage;
+  
+  if (!(uiImage = [ImageFilterCache cached:self.image forFilterName:filterName])) {
+    CIImage *image;
+    
+    if ([[theParams allKeys] containsObject:kCIInputRadiusKey]) {
+      image = [self.image.CIImage imageByClampingToExtent];
+    } else {
+      image = self.image.CIImage;
+    }
+    
+    CIFilter *filter = [CIFilter withName:filterName andCIImage:image];
+    
+    [theParams enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+      [filter setValue:obj forKey:key];
+    }];
+    
+    CIImage *outputImage = (CIImage *)objc_msgSend(filter, @selector(outputImage));
+    
+    uiImage = [outputImage UIImageFromExtent:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
+    
+    self.image = uiImage;
+    
+    [ImageFilterCache cache:self.image forFilterName:filterName];
+  }
+  
+	return uiImage;
 }
 
 

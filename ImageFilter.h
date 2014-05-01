@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Platforms.h"
 
 
 typedef enum {
@@ -21,40 +22,48 @@ typedef enum {
 
 /* Filters */
 @optional
-- (UIImage*)sepia;
-- (UIImage*)invert;
-- (UIImage*)vibrant:(double)amount;
-- (UIImage*)colorize:(double)amount;
-- (UIImage*)brightness:(double)amount;
-- (UIImage*)exposure:(double)amount;
-- (UIImage*)contrast:(double)amount;
-- (UIImage*)edges:(double)amount;
-- (UIImage*)blueMood;
-- (UIImage*)sunkissed;
-- (UIImage*)blackAndWhite;
-- (UIImage*)crossProcess;
-- (UIImage*)polarize;
-- (UIImage*)magichour;
-- (UIImage*)toycamera;
-- (UIImage*)envy;
-- (UIImage*)sharpen:(double)amount;
-- (UIImage*)unsharpMaskWithRadius:(double)radius andIntensity:(double)intensity;
-- (UIImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams;
-- (UIImage *)imageToFitSize:(CGSize)fitSize method:(IFResizingMethod)resizeMethod;
+- (NGImage *)sharpify;
+- (NGImage*)sepia;
+- (NGImage*)invert;
+- (NGImage*)vibrant:(float)amount;
+- (NGImage*)colorize:(float)amount;
+- (NGImage*)brightness:(float)amount;
+- (NGImage*)exposure:(float)amount;
+- (NGImage*)contrast:(float)amount;
+- (NGImage*)edges:(float)amount;
+- (NGImage*)gamma:(float)amount;
+- (NGImage*)blueMood;
+- (NGImage*)erode;
+- (NGImage*)sunkissed;
+- (NGImage*)blackAndWhite;
+- (NGImage*)crossProcess;
+- (NGImage*)polarize;
+- (NGImage*)magichour;
+- (NGImage*)toycamera;
+- (NGImage*)envy;
+- (NGImage*)equalization;
+- (NGImage*)blur:(float)amount;
+- (NGImage*)posterize:(float)amount;
+- (NGImage*)sharpen:(float)amount;
+- (NGImage*)unsharpMaskWithRadius:(float)radius andIntensity:(float)intensity;
+- (NGImage*)gloomWithRadius:(float)radius andIntensity:(float)intensit;
+- (NGImage*)bloomWithRadius:(float)radius andIntensity:(float)intensity;
+- (NGImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams;
+- (NGImage *)imageToFitSize:(CGSize)fitSize method:(IFResizingMethod)resizeMethod;
 
 @end
 
 @class ImageFilter;
 
-@interface UIImage (ImageFilter) <NGFilterProtocol>
+@interface NGImage (ImageFilter) <NGFilterProtocol>
 
-@property (weak, nonatomic) UIImage* previousState;
+@property (weak, nonatomic) NGImage* previousState;
 @property (strong, nonatomic) ImageFilter* filter;
 
 @end
 
 @interface ImageFilter : NSObject
 
-@property (weak, nonatomic) UIImage* image;
+@property (weak, nonatomic) NGImage* image;
 
 @end

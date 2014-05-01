@@ -11,24 +11,47 @@
 
 @implementation ViewController
 
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  self.originalImage = self.imageView.image;
+  self.imageView.image = [self resizeImageDataToView];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
   if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-      return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
   } else {
-      return YES;
+    return YES;
   }
 }
 
-- (IBAction)sharpify:(UIButton *)sender
-{    
-  self.imageView.image = [self.imageView.image unsharpMaskWithRadius:36.f andIntensity:4.f];
+- (IBAction)filter:(UIButton *)sender
+{
+  UIImage *image = [self.originalImage copy];
+  [self.imageView setImage:[image sharpify]];
   [self.imageView setNeedsDisplay];
 }
 
-- (IBAction)previousState:(UIButton *)sender
+- (IBAction)revert:(UIButton *)sender
 {
-  self.imageView.image = self.imageView.image.previousState;
+  self.imageView.image = self.originalImage;
+  self.imageView.image.filter = nil;
+}
+
+- (UIImage *)resizeImageDataToView {
+  // If scale is 0, it'll follows the screen scale for creating the bounds
+  UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, YES, self.imageView.image.scale);
+  
+  [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+  
+  // Get the image out of the context
+  UIImage *copied = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  // Return the result
+  return copied;
 }
 
 @end
