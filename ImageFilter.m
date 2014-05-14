@@ -334,11 +334,9 @@ static unsigned char morphological_kernel[9] = {
 }
 
 - (NGImage *)sharpify {
-  NGImage *image = [self gamma:.85f];
-  image = [self bloomWithRadius:1.7f andIntensity:2.2f];
-  image = [self blur:.28f];
-  image = [self unsharpMaskWithRadius:.6f andIntensity:4.f];
-  image = [self brightness:.08f andConstrast:1.33f];
+  NGImage *image;
+  image = [self exposure:.52f];
+  image = [self unsharpMaskWithRadius:55.f andIntensity:.05f];
   return image;
 }
 
@@ -424,20 +422,17 @@ static unsigned char morphological_kernel[9] = {
 }
 
 - (NGImage*)posterize:(float)amount {
-  return [self.image filter:@"CIColorPosterize" params:@{@"inputLevels": @(amount)}];
+  return [self.image filter:@"CIColorPosterize"
+                     params:@{@"inputLevels": @(amount)}];
 }
 
 - (NGImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams {
   NGImage *uiImage;
   
   if (!(uiImage = [ImageFilterCache cached:self.image forFilterName:filterName])) {
-    CIImage *image;
+    CIImage *image = self.image.CIImage;
     
-    if ([[theParams allKeys] containsObject:kCIInputRadiusKey]) {
-      image = [self.image.CIImage imageByClampingToExtent];
-    } else {
-      image = self.image.CIImage;
-    }
+    (theParams[kCIInputRadiusKey]) && (image = [image imageByClampingToExtent]);
     
     CIFilter *filter = [CIFilter withName:filterName andCIImage:image];
     
@@ -447,9 +442,7 @@ static unsigned char morphological_kernel[9] = {
     
     CIImage *outputImage = (CIImage *)objc_msgSend(filter, @selector(outputImage));
     
-    uiImage = [outputImage UIImageFromExtent:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
-    
-    self.image = uiImage;
+    self.image = uiImage = [outputImage UIImageFromExtent:(CGRect){.size = self.image.size}];
     
     [ImageFilterCache cache:self.image forFilterName:filterName];
   }

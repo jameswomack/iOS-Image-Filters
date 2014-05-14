@@ -21,9 +21,10 @@ static NSCache *cache;
   return [cache objectForKey:keyForImage];
 }
 
-+ (void)cache:(NGImage *)image forFilterName:(NSString *)filterName {
++ (NGImage *)cache:(NGImage *)image forFilterName:(NSString *)filterName {
   NSString *keyForImage = [self keyForImage:image andFilterName:filterName];
   [cache setObject:image forKey:keyForImage];
+  return image;
 }
 
 + (NSString *)keyForImage:(NGImage *)image andFilterName:(NSString *)filterName {
