@@ -1,4 +1,3 @@
-
-ImageFilterExample/ImageFilterExample.xcodeproj/*.xcworkspace/*
-
-ImageFilterExample/ImageFilterExample.xcodeproj/xcuserdata/*
+xcuserdata
+*.xcworkspace
+examples/*/*/*.xcodeproj/xcuserdata/*

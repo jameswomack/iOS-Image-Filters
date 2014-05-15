@@ -12,6 +12,7 @@
 #import "CIFilter+Filter.h"
 #import "CIImage+Filter.h"
 #import "ImageFilterCache.h"
+#import "CIBlueMoodFilter.h"
 #import <Accelerate/Accelerate.h>
 #import <mach/mach_time.h>
 #import <objc/message.h>
@@ -175,13 +176,21 @@ static ImageFilter* _filter;
 
 @implementation ImageFilter
 
++ (void)initialize {
+  id constructor = CIBlueMoodFilter.new;
+  [CIFilter registerFilterName:@"CIBlueMood"
+                   constructor:constructor
+               classAttributes:@{kCIAttributeFilterDisplayName:@"Blue Mood Filter",
+                                 kCIAttributeFilterCategories:@[kCICategoryStylize,kCICategoryStillImage]}];
+}
+
 - (NGImage*)sepia {
   return [self.image filter:@"CISepiaTone" params:@{kCIInputIntensityKey: @0.9f}];
 }
 
 - (NGImage*)blueMood {   
-  return [self.image filter:@"CIFalseColor"
-                     params:@{@"inputColor0": [CIColor colorWithRed:.0 green:.0 blue:1.0 alpha:1.0], @"inputColor1": [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]}];
+  return [self.image filter:@"CIBlueMood"
+                     params:@{}];
 }
 
 - (NGImage *)colorMatrix:(NSArray *)colorMatrix {
@@ -334,10 +343,8 @@ static unsigned char morphological_kernel[9] = {
 }
 
 - (NGImage *)sharpify {
-  NGImage *image;
-  image = [self exposure:.52f];
-  image = [self unsharpMaskWithRadius:55.f andIntensity:.05f];
-  return image;
+  return [[self bloomWithRadius:1.5f andIntensity:6.f]
+          blur:.6f];
 }
 
 - (NGImage*)blur:(float)amount{
@@ -442,6 +449,7 @@ static unsigned char morphological_kernel[9] = {
     
     CIImage *outputImage = (CIImage *)objc_msgSend(filter, @selector(outputImage));
     
+    // Look into this potentially causing crazyness on iPad sim
     self.image = uiImage = [outputImage UIImageFromExtent:(CGRect){.size = self.image.size}];
     
     [ImageFilterCache cache:self.image forFilterName:filterName];
