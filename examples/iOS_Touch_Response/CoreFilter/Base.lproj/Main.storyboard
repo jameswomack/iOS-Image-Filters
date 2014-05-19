@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="NGViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" userLabel="Controller.view">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chung.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="leY-Js-tom" userLabel="Original Image View" colorLabel="IBBuiltInLabel-Green">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chung.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="JqH-HF-MsD" userLabel="Filtered Image VIew" colorLabel="IBBuiltInLabel-Purple">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="leY-Js-tom" secondAttribute="bottom" id="0j0-eA-JuB"/>
+                            <constraint firstAttribute="trailing" secondItem="JqH-HF-MsD" secondAttribute="trailing" id="6sV-oa-aED"/>
+                            <constraint firstItem="JqH-HF-MsD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="AZK-sg-NCZ"/>
+                            <constraint firstItem="leY-Js-tom" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Dtx-73-ZjB"/>
+                            <constraint firstAttribute="trailing" secondItem="leY-Js-tom" secondAttribute="trailing" id="GTH-6I-U0k"/>
+                            <constraint firstItem="JqH-HF-MsD" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="VQc-uK-Lej"/>
+                            <constraint firstItem="leY-Js-tom" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="XsZ-gJ-fOa"/>
+                            <constraint firstAttribute="bottom" secondItem="JqH-HF-MsD" secondAttribute="bottom" id="rtk-sR-Tif"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="js1-xb-RM5" appends="YES" id="EQv-Cd-9mF"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="filteredImageView" destination="JqH-HF-MsD" id="TVL-qp-wA9"/>
+                        <outlet property="mainViewTapGestureRecognizer" destination="js1-xb-RM5" id="hU4-n9-5bN"/>
+                        <outlet property="originalImageView" destination="leY-Js-tom" id="INu-cC-aQR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="js1-xb-RM5">
+                    <connections>
+                        <action selector="receivedMainViewTapGesture:" destination="vXZ-lx-hvc" id="98D-5w-GfR"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="ndo-G1-Qda"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chung.jpg" width="815" height="1222"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

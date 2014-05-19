@@ -11,9 +11,10 @@
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImage *originalImage;
 
-- (IBAction)sharpify:(UIButton *)sender;
-- (IBAction)previousState:(UIButton *)sender;
+- (IBAction)filter:(UIButton *)sender;
+- (IBAction)revert:(UIButton *)sender;
 
 
 @end

@@ -7,12 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "ImageFilter.h"
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return YES;
+}
+
++ (void)initialize {
+  [ImageFilter initialize];
 }
 
 @end

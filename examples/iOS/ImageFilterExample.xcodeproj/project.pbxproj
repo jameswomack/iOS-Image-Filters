@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B072F381911F7C7003A4716 /* UIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F371911F7C7003A4716 /* UIImage+Filter.m */; };
+		1B072F3B191208D8003A4716 /* CIFilter+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F3A191208D8003A4716 /* CIFilter+Filter.m */; };
+		1B072F3E19120AA5003A4716 /* CIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F3D19120AA5003A4716 /* CIImage+Filter.m */; };
+		1B072F4119121F85003A4716 /* ImageFilterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F4019121F85003A4716 /* ImageFilterCache.m */; };
+		1B072F56191236A2003A4716 /* Platforms.h in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F42191226DC003A4716 /* Platforms.h */; };
+		1B0CDE451929EEE500251B38 /* NGFilterStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CDE441929EEE500251B38 /* NGFilterStore.m */; };
+		1B0CDE4B1929F09500251B38 /* NGFilterConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CDE4A1929F09500251B38 /* NGFilterConstructor.m */; };
+		1B0CDE4E1929F39000251B38 /* CIBlueMoodFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CDE4D1929F39000251B38 /* CIBlueMoodFilter.m */; };
 		1B78B36819108ADB00BEB3D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */; };
+		1B78B36C1910C66800BEB3D4 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B78B36B1910C66800BEB3D4 /* Accelerate.framework */; };
+		1BC8A7B61911D79200E11D7F /* original(crop).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BC8A7B51911D79200E11D7F /* original(crop).jpg */; };
 		59776F0215B4035300433DE9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0115B4035300433DE9 /* UIKit.framework */; };
 		59776F0415B4035300433DE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0315B4035300433DE9 /* Foundation.framework */; };
 		59776F0615B4035300433DE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0515B4035300433DE9 /* CoreGraphics.framework */; };
@@ -30,7 +40,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B072F361911F7C7003A4716 /* UIImage+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Filter.h"; path = "../../../UIImage+Filter.h"; sourceTree = "<group>"; };
+		1B072F371911F7C7003A4716 /* UIImage+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Filter.m"; path = "../../../UIImage+Filter.m"; sourceTree = "<group>"; };
+		1B072F39191208D8003A4716 /* CIFilter+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CIFilter+Filter.h"; path = "../../../CIFilter+Filter.h"; sourceTree = "<group>"; };
+		1B072F3A191208D8003A4716 /* CIFilter+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CIFilter+Filter.m"; path = "../../../CIFilter+Filter.m"; sourceTree = "<group>"; };
+		1B072F3C19120AA5003A4716 /* CIImage+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CIImage+Filter.h"; path = "../../../CIImage+Filter.h"; sourceTree = "<group>"; };
+		1B072F3D19120AA5003A4716 /* CIImage+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CIImage+Filter.m"; path = "../../../CIImage+Filter.m"; sourceTree = "<group>"; };
+		1B072F3F19121F85003A4716 /* ImageFilterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageFilterCache.h; path = ../../../ImageFilterCache.h; sourceTree = "<group>"; };
+		1B072F4019121F85003A4716 /* ImageFilterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageFilterCache.m; path = ../../../ImageFilterCache.m; sourceTree = "<group>"; };
+		1B072F42191226DC003A4716 /* Platforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platforms.h; path = ../../../Platforms.h; sourceTree = "<group>"; };
+		1B0CDE431929EEE500251B38 /* NGFilterStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NGFilterStore.h; path = ../../../NGFilterStore.h; sourceTree = "<group>"; };
+		1B0CDE441929EEE500251B38 /* NGFilterStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NGFilterStore.m; path = ../../../NGFilterStore.m; sourceTree = "<group>"; };
+		1B0CDE491929F09500251B38 /* NGFilterConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NGFilterConstructor.h; path = ../../../NGFilterConstructor.h; sourceTree = "<group>"; };
+		1B0CDE4A1929F09500251B38 /* NGFilterConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NGFilterConstructor.m; path = ../../../NGFilterConstructor.m; sourceTree = "<group>"; };
+		1B0CDE4C1929F39000251B38 /* CIBlueMoodFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIBlueMoodFilter.h; path = ../../../CIBlueMoodFilter.h; sourceTree = "<group>"; };
+		1B0CDE4D1929F39000251B38 /* CIBlueMoodFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CIBlueMoodFilter.m; path = ../../../CIBlueMoodFilter.m; sourceTree = "<group>"; };
 		1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1B78B36B1910C66800BEB3D4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		1BC8A7B51911D79200E11D7F /* original(crop).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "original(crop).jpg"; sourceTree = "<group>"; };
 		59776EFD15B4035300433DE9 /* ImageFilterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59776F0115B4035300433DE9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59776F0315B4035300433DE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -45,17 +72,17 @@
 		59776F1715B4035300433DE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		59776F1915B4035300433DE9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		59776F1A15B4035300433DE9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		59776F2215B4038400433DE9 /* ImageFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImageFilter.h; path = ../../ImageFilter.h; sourceTree = "<group>"; };
-		59776F2315B4038400433DE9 /* ImageFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ImageFilter.m; path = ../../ImageFilter.m; sourceTree = "<group>"; };
+		59776F2215B4038400433DE9 /* ImageFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImageFilter.h; path = ../../../ImageFilter.h; sourceTree = "<group>"; };
+		59776F2315B4038400433DE9 /* ImageFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ImageFilter.m; path = ../../../ImageFilter.m; sourceTree = "<group>"; };
 		59776F2515B404F500433DE9 /* north-park_sunflower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "north-park_sunflower.jpg"; sourceTree = "<group>"; };
 		59776F2615B404F500433DE9 /* north-park_sunflower@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "north-park_sunflower@2x.jpg"; sourceTree = "<group>"; };
 		59776F2A15B40F3000433DE9 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		59776F2C15B413C000433DE9 /* crossprocess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crossprocess.png; path = ../../../crossprocess.png; sourceTree = "<group>"; };
-		59776F2D15B413C000433DE9 /* crossprocess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossprocess@2x.png"; path = "../../../crossprocess@2x.png"; sourceTree = "<group>"; };
-		59776F2E15B413C000433DE9 /* magichour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = magichour.png; path = ../../../magichour.png; sourceTree = "<group>"; };
-		59776F2F15B413C000433DE9 /* magichour@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magichour@2x.png"; path = "../../../magichour@2x.png"; sourceTree = "<group>"; };
-		59776F3015B413C000433DE9 /* toycamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toycamera.png; path = ../../../toycamera.png; sourceTree = "<group>"; };
-		59776F3115B413C000433DE9 /* toycamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toycamera@2x.png"; path = "../../../toycamera@2x.png"; sourceTree = "<group>"; };
+		59776F2C15B413C000433DE9 /* crossprocess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crossprocess.png; path = ../../../../crossprocess.png; sourceTree = "<group>"; };
+		59776F2D15B413C000433DE9 /* crossprocess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossprocess@2x.png"; path = "../../../../crossprocess@2x.png"; sourceTree = "<group>"; };
+		59776F2E15B413C000433DE9 /* magichour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = magichour.png; path = ../../../../magichour.png; sourceTree = "<group>"; };
+		59776F2F15B413C000433DE9 /* magichour@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magichour@2x.png"; path = "../../../../magichour@2x.png"; sourceTree = "<group>"; };
+		59776F3015B413C000433DE9 /* toycamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toycamera.png; path = ../../../../toycamera.png; sourceTree = "<group>"; };
+		59776F3115B413C000433DE9 /* toycamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toycamera@2x.png"; path = "../../../../toycamera@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B78B36C1910C66800BEB3D4 /* Accelerate.framework in Frameworks */,
 				59776F2B15B40F3000433DE9 /* CoreImage.framework in Frameworks */,
 				59776F0615B4035300433DE9 /* CoreGraphics.framework in Frameworks */,
 				59776F0215B4035300433DE9 /* UIKit.framework in Frameworks */,
@@ -102,6 +130,7 @@
 		59776F0015B4035300433DE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B78B36B1910C66800BEB3D4 /* Accelerate.framework */,
 				59776F2A15B40F3000433DE9 /* CoreImage.framework */,
 				59776F0115B4035300433DE9 /* UIKit.framework */,
 				59776F0315B4035300433DE9 /* Foundation.framework */,
@@ -141,6 +170,21 @@
 			children = (
 				59776F2215B4038400433DE9 /* ImageFilter.h */,
 				59776F2315B4038400433DE9 /* ImageFilter.m */,
+				1B0CDE4C1929F39000251B38 /* CIBlueMoodFilter.h */,
+				1B0CDE4D1929F39000251B38 /* CIBlueMoodFilter.m */,
+				1B072F361911F7C7003A4716 /* UIImage+Filter.h */,
+				1B072F371911F7C7003A4716 /* UIImage+Filter.m */,
+				1B072F39191208D8003A4716 /* CIFilter+Filter.h */,
+				1B072F3A191208D8003A4716 /* CIFilter+Filter.m */,
+				1B072F3C19120AA5003A4716 /* CIImage+Filter.h */,
+				1B072F3D19120AA5003A4716 /* CIImage+Filter.m */,
+				1B072F3F19121F85003A4716 /* ImageFilterCache.h */,
+				1B072F4019121F85003A4716 /* ImageFilterCache.m */,
+				1B072F42191226DC003A4716 /* Platforms.h */,
+				1B0CDE431929EEE500251B38 /* NGFilterStore.h */,
+				1B0CDE441929EEE500251B38 /* NGFilterStore.m */,
+				1B0CDE491929F09500251B38 /* NGFilterConstructor.h */,
+				1B0CDE4A1929F09500251B38 /* NGFilterConstructor.m */,
 			);
 			name = ImageFilter;
 			sourceTree = "<group>";
@@ -148,6 +192,7 @@
 		59776F2415B404F500433DE9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1BC8A7B51911D79200E11D7F /* original(crop).jpg */,
 				1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */,
 				59776F2C15B413C000433DE9 /* crossprocess.png */,
 				59776F2D15B413C000433DE9 /* crossprocess@2x.png */,
@@ -219,6 +264,7 @@
 				59776F2815B404F500433DE9 /* north-park_sunflower@2x.jpg in Resources */,
 				1B78B36819108ADB00BEB3D4 /* Default-568h@2x.png in Resources */,
 				59776F3215B413C000433DE9 /* crossprocess.png in Resources */,
+				1BC8A7B61911D79200E11D7F /* original(crop).jpg in Resources */,
 				59776F3315B413C000433DE9 /* crossprocess@2x.png in Resources */,
 				59776F3415B413C000433DE9 /* magichour.png in Resources */,
 				59776F3515B413C000433DE9 /* magichour@2x.png in Resources */,
@@ -234,10 +280,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B0CDE451929EEE500251B38 /* NGFilterStore.m in Sources */,
+				1B072F56191236A2003A4716 /* Platforms.h in Sources */,
+				1B0CDE4E1929F39000251B38 /* CIBlueMoodFilter.m in Sources */,
 				59776F0E15B4035300433DE9 /* main.m in Sources */,
+				1B072F381911F7C7003A4716 /* UIImage+Filter.m in Sources */,
+				1B072F4119121F85003A4716 /* ImageFilterCache.m in Sources */,
 				59776F1215B4035300433DE9 /* AppDelegate.m in Sources */,
+				1B072F3E19120AA5003A4716 /* CIImage+Filter.m in Sources */,
 				59776F2915B40A3500433DE9 /* ImageFilter.m in Sources */,
 				59776F1B15B4035300433DE9 /* ViewController.m in Sources */,
+				1B072F3B191208D8003A4716 /* CIFilter+Filter.m in Sources */,
+				1B0CDE4B1929F09500251B38 /* NGFilterConstructor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
