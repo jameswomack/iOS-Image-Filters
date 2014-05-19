@@ -1,5 +1,4 @@
 # ImageFilter
-————————————————————————————————————————————
 ## High-level image/photo filtering on iOS 5+
 
 * Use custom CoreFilter classes with `filterWithName:`
