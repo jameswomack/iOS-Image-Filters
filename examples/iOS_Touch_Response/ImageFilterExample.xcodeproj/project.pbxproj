@@ -46,7 +46,7 @@
 		1B0CDE501929F84100251B38 /* NGFilterConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NGFilterConstructor.m; path = ../../../NGFilterConstructor.m; sourceTree = "<group>"; };
 		1B0CDE511929F84100251B38 /* NGFilterStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NGFilterStore.h; path = ../../../NGFilterStore.h; sourceTree = "<group>"; };
 		1B0CDE521929F84100251B38 /* NGFilterStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NGFilterStore.m; path = ../../../NGFilterStore.m; sourceTree = "<group>"; };
-		1B69B2D21924957E009FD709 /* CoreFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B69B2D21924957E009FD709 /* CoreFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CoreFilter.app; path = ImageFilterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B69B2D51924957E009FD709 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1B69B2D71924957E009FD709 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1B69B2D91924957E009FD709 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -143,21 +143,6 @@
 				1B69B2EB1924957E009FD709 /* NGViewController.m */,
 				1B69B2ED1924957E009FD709 /* Images.xcassets */,
 				1B69B2DC1924957E009FD709 /* Supporting Files */,
-				1B69B30A192495A5009FD709 /* NGFilter.h */,
-				1B69B30B192495A5009FD709 /* NGFilter.m */,
-				1B69B3121925F53C009FD709 /* Platforms.h */,
-				1B69B3161925F607009FD709 /* CIImage+Filter.h */,
-				1B69B3171925F607009FD709 /* CIImage+Filter.m */,
-				1B69B3131925F5C9009FD709 /* CIFilter+Filter.h */,
-				1B69B3141925F5C9009FD709 /* CIFilter+Filter.m */,
-				1B69B30F1925F515009FD709 /* UIImage+Filter.h */,
-				1B69B3101925F515009FD709 /* UIImage+Filter.m */,
-				1B0CDE4F1929F84100251B38 /* NGFilterConstructor.h */,
-				1B0CDE501929F84100251B38 /* NGFilterConstructor.m */,
-				1B0CDE511929F84100251B38 /* NGFilterStore.h */,
-				1B0CDE521929F84100251B38 /* NGFilterStore.m */,
-				1B9AFAE519262F97007BC676 /* NGLayer.h */,
-				1B9AFAE619262F97007BC676 /* NGLayer.m */,
 			);
 			path = CoreFilter;
 			sourceTree = "<group>";
@@ -165,6 +150,7 @@
 		1B69B2DC1924957E009FD709 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1B7E93F4192B1652008EB9EA /* ImageFilter */,
 				1B69B30D1925F37C009FD709 /* chung.jpg */,
 				1B69B2DD1924957E009FD709 /* CoreFilter-Info.plist */,
 				1B69B2DE1924957E009FD709 /* InfoPlist.strings */,
@@ -190,6 +176,28 @@
 				1B69B2FD1924957E009FD709 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1B7E93F4192B1652008EB9EA /* ImageFilter */ = {
+			isa = PBXGroup;
+			children = (
+				1B69B30A192495A5009FD709 /* NGFilter.h */,
+				1B69B30B192495A5009FD709 /* NGFilter.m */,
+				1B69B3121925F53C009FD709 /* Platforms.h */,
+				1B69B3161925F607009FD709 /* CIImage+Filter.h */,
+				1B69B3171925F607009FD709 /* CIImage+Filter.m */,
+				1B69B3131925F5C9009FD709 /* CIFilter+Filter.h */,
+				1B69B3141925F5C9009FD709 /* CIFilter+Filter.m */,
+				1B69B30F1925F515009FD709 /* UIImage+Filter.h */,
+				1B69B3101925F515009FD709 /* UIImage+Filter.m */,
+				1B0CDE4F1929F84100251B38 /* NGFilterConstructor.h */,
+				1B0CDE501929F84100251B38 /* NGFilterConstructor.m */,
+				1B0CDE511929F84100251B38 /* NGFilterStore.h */,
+				1B0CDE521929F84100251B38 /* NGFilterStore.m */,
+				1B9AFAE519262F97007BC676 /* NGLayer.h */,
+				1B9AFAE619262F97007BC676 /* NGLayer.m */,
+			);
+			name = ImageFilter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

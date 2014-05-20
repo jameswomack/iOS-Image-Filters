@@ -26,7 +26,7 @@ static NSMutableDictionary *_backingStore;
 
 + (void)registerFilterName:(NSString *)name
                constructor:(id<CIFilterConstructor>)anObject
-           classAttributes:(NSDictionary *)attributes; {
+           classAttributes:(NSDictionary *)attributes {
   NGFilterConstructor *fc = NGFilterConstructor.new;
   // TODO — figure out what to do with attributes
   fc.attributes = attributes;

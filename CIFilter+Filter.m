@@ -78,7 +78,7 @@ void swizzle(Class class, SEL originalSelector, SEL swizzledSelector) {
   });
 }
 
-+ (CIFilter *)Filter_filterWithName:(NSString *)name; {
++ (CIFilter *)Filter_filterWithName:(NSString *)name {
   CIFilter *filter = nil;
   
   if (!(filter = [self Filter_filterWithName:name])) {
@@ -90,7 +90,7 @@ void swizzle(Class class, SEL originalSelector, SEL swizzledSelector) {
 
 + (void)registerFilterName:(NSString *)name
                constructor:(id<CIFilterConstructor>)anObject
-           classAttributes:(NSDictionary *)attributes; {
+           classAttributes:(NSDictionary *)attributes {
   return [NGFilterStore registerFilterName:name constructor:anObject classAttributes:attributes];;
 }
 #endif

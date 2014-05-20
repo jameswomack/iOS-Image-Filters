@@ -16,5 +16,4 @@
 - (IBAction)filter:(UIButton *)sender;
 - (IBAction)revert:(UIButton *)sender;
 
-
 @end

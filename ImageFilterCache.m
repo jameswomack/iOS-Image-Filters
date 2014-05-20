@@ -27,7 +27,7 @@ static NSCache *cache;
   return image;
 }
 
-+ (NSString *)keyForImage:(NGImage *)image andFilterName:(NSString *)filterName {
++ (NSString *)keyForImage:(NGImage *)__unused image andFilterName:(NSString *)filterName {
   return [NSString stringWithFormat:@"%@", filterName];
 }
 
