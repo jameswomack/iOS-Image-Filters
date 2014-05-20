@@ -30,11 +30,13 @@
   NSBitmapImageRep *rep = [NSBitmapImageRep.alloc initWithCIImage:ciImage];
   cgImage = rep.CGImage;
   image = [[NGImage alloc] initWithCGImage:cgImage size:extent.size];
+  
 #else
   CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer: @NO}];
   cgImage = [context createCGImage:ciImage fromRect:extent];
-  image = [NGImage imageWithCGImage:cgImage];
+  image = [NGImage imageWithCGImage:cgImage scale:UIScreen.mainScreen.scale orientation:UIImageOrientationUp];
   CGImageRelease(cgImage);
+  
 #endif
   
   return image;
@@ -59,7 +61,7 @@
   CIFilter *clamp = [CIFilter filterWithName:@"CIAffineClamp"];
   [clamp setValue:[NSValue valueWithBytes:&transform
                                  objCType:@encode(CGAffineTransform)]
-           forKey:kCIInputTransformKey];
+           forKey:@"inputTransform"];
   [clamp setValue:self forKey:kCIInputImageKey];
   return [clamp valueForKey:kCIOutputImageKey];
 }

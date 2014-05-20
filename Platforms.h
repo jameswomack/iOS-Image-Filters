@@ -16,6 +16,7 @@
 #define NGFont UIFont
 #define NGBezierPath UIBezierPath
 #define isMobile 1
+#define isDesktop 0
 #import <CoreImage/CoreImage.h>
 
 #elif TARGET_OS_MAC && !TARGET_OS_IPHONE
@@ -24,8 +25,10 @@
 #define NGImage NSImage
 #define NGFont NSFont
 #define NGBezierPath NSBezierPath
+#define isMobile 0
 #define isDesktop 1
 #include <QuartzCore/CoreImage.h>
+
 
 #endif
 

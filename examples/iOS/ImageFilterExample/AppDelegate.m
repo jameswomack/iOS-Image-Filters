@@ -11,7 +11,8 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)__unused application
+didFinishLaunchingWithOptions:(NSDictionary *)__unused launchOptions {
     return YES;
 }
 

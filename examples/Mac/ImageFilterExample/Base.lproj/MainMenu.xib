@@ -685,7 +685,7 @@
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dE8-cL-eyl">
                                 <rect key="frame" x="0.0" y="0.0" width="688" height="463"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="original" id="shj-1f-7D4"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="north-park_sunflower" id="shj-1f-7D4"/>
                             </imageView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-eT-FUL">
                                 <rect key="frame" x="14" y="13" width="72" height="32"/>
@@ -722,6 +722,6 @@
         </viewController>
     </objects>
     <resources>
-        <image name="original" width="1920" height="1280"/>
+        <image name="north-park_sunflower" width="1296" height="968"/>
     </resources>
 </document>

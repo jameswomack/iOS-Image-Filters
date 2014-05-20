@@ -21,7 +21,7 @@
   return [uiImage CIImage];
 }
 
-- (CIFilter *)filterWithName:(NSString *)name; {
+- (CIFilter *)filterWithName:(NSString *)__unused name {
   return self.class.new;
 }
 

@@ -11,18 +11,13 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  self.originalImage = self.imageView.image;
   
-  dispatch_async(dispatch_get_main_queue(), ^{
-    self.imageView.image = [self resizeImageDataToView];
-  });
+  self.originalImage = self.imageView.image;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
   } else {
@@ -30,31 +25,16 @@
   }
 }
 
-- (IBAction)filter:(UIButton *)sender
-{
+- (IBAction)filter:(UIButton *)__unused sender {
   UIImage *image = [self.originalImage copy];
-  [self.imageView setImage:[image blueMood]];
-  [self.imageView setNeedsDisplay];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.imageView.image = [image blueMood];
+  });
 }
 
-- (IBAction)revert:(UIButton *)sender
-{
+- (IBAction)revert:(UIButton *)__unused sender {
   self.imageView.image = self.originalImage;
   self.imageView.image.filter = nil;
-}
-
-- (UIImage *)resizeImageDataToView {
-  // If scale is 0, it'll follows the screen scale for creating the bounds
-  UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, YES, self.imageView.image.scale);
-  
-  [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-  
-  // Get the image out of the context
-  UIImage *copied = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  
-  // Return the result
-  return copied;
 }
 
 @end

@@ -10,7 +10,7 @@
 #import "Platforms.h"
 
 @implementation NGImage (Filter)
-- (CIImage *)CIImage; {
+- (CIImage *)CIImage {
   return [CIImage imageWithCGImage:self.CGImage];
 }
 
