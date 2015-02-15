@@ -3,7 +3,6 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 5/1/14.
-//  Copyright (c) 2014 James Womack. All rights reserved.
 //
 
 #import "CIFilter+Filter.h"
@@ -17,7 +16,12 @@
 
 + (CIFilter *)withName:(NSString *)name andImage:(NGImage *)image {
   CIFilter *filter = [self filterWithName:name];
-  [filter setValue:image.CIImage forKey:kCIInputImageKey];
+#if needsIOS8Features
+  CIImage *ciImage = image.CIImage;
+#else
+  CIImage *ciImage = image.jw_CIImage;
+#endif
+  [filter setValue:ciImage forKey:kCIInputImageKey];
   return filter;
 }
 

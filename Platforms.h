@@ -3,7 +3,6 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 5/1/14.
-//  Copyright (c) 2014 James Womack. All rights reserved.
 //
 
 #ifndef ImageFilterExample_Platforms_h
@@ -30,6 +29,14 @@
 #include <QuartzCore/CoreImage.h>
 
 
+#endif
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+#define hasIOS8Features 1
+#define needsIOS8Features 0
+#else
+#define hasIOS8Features 0
+#define needsIOS8Features 1
 #endif
 
 #endif

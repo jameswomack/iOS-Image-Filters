@@ -3,7 +3,6 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 5/19/14.
-//  Copyright (c) 2014 James Womack. All rights reserved.
 //
 
 #import "CIBlueMoodFilter.h"
@@ -18,7 +17,12 @@
   NGImage *uiImage = [image UIImage];
   uiImage = [uiImage filter:@"CIFalseColor"
                      params:@{@"inputColor0":[CIColor colorWithRed:.0 green:.0 blue:1.0 alpha:1.0], @"inputColor1": [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]}];
-  return [uiImage CIImage];
+#if needsIOS8Features
+  CIImage *ciImage = uiImage.CIImage;
+#else
+  CIImage *ciImage = uiImage.jw_CIImage;
+#endif
+  return ciImage;
 }
 
 - (CIFilter *)filterWithName:(NSString *)__unused name {
