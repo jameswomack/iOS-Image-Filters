@@ -10,29 +10,29 @@
 	<string>ImageFilterExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C5678C93-F3D3-4E74-BD0A-4B8EE1381645</key>
-		<string>https://github.com/jameswomack/iOS-Image-Filters</string>
+		<key>27CCC6602740EA7F279CF938C967976D7AF290DF</key>
+		<string>https://github.com/jameswomack/iOS-Image-Filters.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ImageFilterExample/ImageFilterExample.xcodeproj/project.xcworkspace</string>
+	<string>examples/iOS/ImageFilterExample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C5678C93-F3D3-4E74-BD0A-4B8EE1381645</key>
-		<string>../../..</string>
+		<key>27CCC6602740EA7F279CF938C967976D7AF290DF</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/jameswomack/iOS-Image-Filters</string>
+	<string>https://github.com/jameswomack/iOS-Image-Filters.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C5678C93-F3D3-4E74-BD0A-4B8EE1381645</string>
+	<string>27CCC6602740EA7F279CF938C967976D7AF290DF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C5678C93-F3D3-4E74-BD0A-4B8EE1381645</string>
+			<string>27CCC6602740EA7F279CF938C967976D7AF290DF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iOS-Image-Filters</string>
 		</dict>

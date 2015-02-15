@@ -3,14 +3,17 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 5/1/14.
-//  Copyright (c) 2014 James Womack. All rights reserved.
 //
 
 #import "UIImage+Filter.h"
 #import "Platforms.h"
 
 @implementation NGImage (Filter)
-- (CIImage *)CIImage {
+#if needsIOS8Features
+- (CIImage*)CIImage  {
+#else
+- (CIImage*)jw_CIImage {
+#endif
   return [CIImage imageWithCGImage:self.CGImage];
 }
 

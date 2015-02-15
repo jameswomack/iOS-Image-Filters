@@ -3,7 +3,6 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 5/1/14.
-//  Copyright (c) 2014 James Womack. All rights reserved.
 //
 
 #import "Platforms.h"
@@ -12,5 +11,9 @@
 - (NGImage *)UIImage;
 - (NGImage *)UIImageFromExtent:(CGRect)extent;
 - (CIImage *)croppedForRadius:(float)radius;
+#if needsIOS8Features
 - (CIImage*)imageByClampingToExtent;
+#else
+- (CIImage*)jw_imageByClampingToExtent;
+#endif
 @end
