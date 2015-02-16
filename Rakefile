@@ -19,7 +19,7 @@ task :default => 'test'
 private
 
 def run_tests(scheme, sdk)
-  sh("xcodebuild -workspace ./examples/iOS/ImageFilterExample.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -configuration Debug clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
+  sh("xcodebuild -workspace ./ImageFilters/examples/iOS/ImageFilterExample.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -configuration Debug clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
 end
 
 def tests_failed(platform)
