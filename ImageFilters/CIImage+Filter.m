@@ -3,7 +3,6 @@
 //  ImageFilterExample
 //
 //  Created by James Womack on 5/1/14.
-//  Copyright (c) 2014 James Womack. All rights reserved.
 //
 
 #import "Platforms.h"
@@ -43,7 +42,12 @@
 }
 
 - (CIImage *)croppedForRadius:(float)radius {
+#if needsIOS8Features
   CIImage *image = [self imageByClampingToExtent];
+#else
+  CIImage *image = [self jw_imageByClampingToExtent];
+#endif
+
   CGRect extent = image.extent;
   
   CGRect cropRect = (CGRect){
@@ -56,7 +60,11 @@
   return [image imageByCroppingToRect:cropRect];
 }
 
+#if needsIOS8Features
 - (CIImage*)imageByClampingToExtent {
+#else
+- (CIImage*)jw_imageByClampingToExtent {
+#endif
   CGAffineTransform transform = CGAffineTransformIdentity;
   CIFilter *clamp = [CIFilter filterWithName:@"CIAffineClamp"];
   [clamp setValue:[NSValue valueWithBytes:&transform
