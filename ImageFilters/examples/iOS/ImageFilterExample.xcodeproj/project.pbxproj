@@ -21,12 +21,6 @@
 		59776F1215B4035300433DE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59776F1115B4035300433DE9 /* AppDelegate.m */; };
 		59776F1B15B4035300433DE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59776F1A15B4035300433DE9 /* ViewController.m */; };
 		59776F2B15B40F3000433DE9 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F2A15B40F3000433DE9 /* CoreImage.framework */; };
-		59776F3215B413C000433DE9 /* crossprocess.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F2C15B413C000433DE9 /* crossprocess.png */; };
-		59776F3315B413C000433DE9 /* crossprocess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F2D15B413C000433DE9 /* crossprocess@2x.png */; };
-		59776F3415B413C000433DE9 /* magichour.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F2E15B413C000433DE9 /* magichour.png */; };
-		59776F3515B413C000433DE9 /* magichour@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F2F15B413C000433DE9 /* magichour@2x.png */; };
-		59776F3615B413C000433DE9 /* toycamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F3015B413C000433DE9 /* toycamera.png */; };
-		59776F3715B413C000433DE9 /* toycamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F3115B413C000433DE9 /* toycamera@2x.png */; };
 		738415311A915A0A0018BFC1 /* ImageFilterExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 738415301A915A0A0018BFC1 /* ImageFilterExampleTests.m */; };
 		8D573EC46A51DB546DAB199E /* libPods-ImageFilterExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4295E592912F069431050756 /* libPods-ImageFilterExampleTests.a */; };
 /* End PBXBuildFile section */
@@ -63,12 +57,6 @@
 		59776F1915B4035300433DE9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		59776F1A15B4035300433DE9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		59776F2A15B40F3000433DE9 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		59776F2C15B413C000433DE9 /* crossprocess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crossprocess.png; path = ../../../../crossprocess.png; sourceTree = "<group>"; };
-		59776F2D15B413C000433DE9 /* crossprocess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossprocess@2x.png"; path = "../../../../crossprocess@2x.png"; sourceTree = "<group>"; };
-		59776F2E15B413C000433DE9 /* magichour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = magichour.png; path = ../../../../magichour.png; sourceTree = "<group>"; };
-		59776F2F15B413C000433DE9 /* magichour@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magichour@2x.png"; path = "../../../../magichour@2x.png"; sourceTree = "<group>"; };
-		59776F3015B413C000433DE9 /* toycamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toycamera.png; path = ../../../../toycamera.png; sourceTree = "<group>"; };
-		59776F3115B413C000433DE9 /* toycamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toycamera@2x.png"; path = "../../../../toycamera@2x.png"; sourceTree = "<group>"; };
 		7384152C1A915A0A0018BFC1 /* ImageFilterExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFilterExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7384152F1A915A0A0018BFC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		738415301A915A0A0018BFC1 /* ImageFilterExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFilterExampleTests.m; sourceTree = "<group>"; };
@@ -184,12 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */,
-				59776F2C15B413C000433DE9 /* crossprocess.png */,
-				59776F2D15B413C000433DE9 /* crossprocess@2x.png */,
-				59776F2E15B413C000433DE9 /* magichour.png */,
-				59776F2F15B413C000433DE9 /* magichour@2x.png */,
-				59776F3015B413C000433DE9 /* toycamera.png */,
-				59776F3115B413C000433DE9 /* toycamera@2x.png */,
 				1B7E93E6192B006B008EB9EA /* north-park_sunflower.png */,
 				1B7E93E7192B006B008EB9EA /* north-park_sunflower@2x.png */,
 			);
@@ -296,14 +278,8 @@
 				1B7E93EF192B0D31008EB9EA /* ViewController.xib in Resources */,
 				1B78B36819108ADB00BEB3D4 /* Default-568h@2x.png in Resources */,
 				1B7E93E8192B006B008EB9EA /* north-park_sunflower.png in Resources */,
-				59776F3215B413C000433DE9 /* crossprocess.png in Resources */,
-				59776F3315B413C000433DE9 /* crossprocess@2x.png in Resources */,
-				59776F3415B413C000433DE9 /* magichour.png in Resources */,
-				59776F3515B413C000433DE9 /* magichour@2x.png in Resources */,
 				1B7E93ED192B0CD0008EB9EA /* AppDelegate.xib in Resources */,
-				59776F3615B413C000433DE9 /* toycamera.png in Resources */,
 				1B7E93E9192B006B008EB9EA /* north-park_sunflower@2x.png in Resources */,
-				59776F3715B413C000433DE9 /* toycamera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
