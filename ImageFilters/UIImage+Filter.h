@@ -8,11 +8,7 @@
 #import "Platforms.h"
 
 @interface NGImage (Filter)
-#if needsIOS8Features
-- (CIImage*)CIImage;
-#else
-- (CIImage*)jw_CIImage;
-#endif
+- (CIImage*)ng_CIImage;
 #if isDesktop
 - (CGImageRef)CGImage;
 - (CGFloat)scale;

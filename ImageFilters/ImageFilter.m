@@ -432,19 +432,12 @@ static unsigned char morphological_kernel[9] = {
   NGImage *uiImage;
   
   if (!(uiImage = [ImageFilterCache cached:self.image forFilterName:filterName])) {
-#if needsIOS8Features
-    CIImage *image = self.image.CIImage;
-#else
-    CIImage *image = self.image.jw_CIImage;
-#endif
+
+    CIImage *image = self.image.ng_CIImage;
     
     BOOL shouldClamp = theParams.allKeys.count && theParams[@"inputRadius"];
     if (shouldClamp) {
-#if needsIOS8Features
-      image = [image imageByClampingToExtent];
-#else
-      image = [image jw_imageByClampingToExtent];
-#endif
+      image = [image ng_imageByClampingToExtent];
     }
     
     CIFilter *filter = [CIFilter withName:filterName andCIImage:image];

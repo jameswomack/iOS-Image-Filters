@@ -16,11 +16,9 @@
 
 + (CIFilter *)withName:(NSString *)name andImage:(NGImage *)image {
   CIFilter *filter = [self filterWithName:name];
-#if needsIOS8Features
-  CIImage *ciImage = image.CIImage;
-#else
-  CIImage *ciImage = image.jw_CIImage;
-#endif
+
+  CIImage *ciImage = image.ng_CIImage;
+
   [filter setValue:ciImage forKey:kCIInputImageKey];
   return filter;
 }
