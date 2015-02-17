@@ -1,14 +1,26 @@
 PODS:
+  - ImageFilters (0.1.0)
   - OCHamcrest (4.1.1)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
   - Specta (0.3.2)
 
 DEPENDENCIES:
+  - ImageFilters (from `https://github.com/jameswomack/iOS-Image-Filters.git`)
   - OCMockito
   - Specta
 
+EXTERNAL SOURCES:
+  ImageFilters:
+    :git: https://github.com/jameswomack/iOS-Image-Filters.git
+
+CHECKOUT OPTIONS:
+  ImageFilters:
+    :commit: 91c6b61cc49a6558925a44555840568392658b5c
+    :git: https://github.com/jameswomack/iOS-Image-Filters.git
+
 SPEC CHECKSUMS:
+  ImageFilters: 88458556d9996107d2ffee80f7feb09e3531a75d
   OCHamcrest: af1c7c5ea345de69ea6c9c2958f65f3044e5c420
   OCMockito: 991936bb775cc4c27f063d38f5e17b9161fbd21c
   Specta: 698a58ffa5ec948327d3b92eab50ca58d7f4fbe8

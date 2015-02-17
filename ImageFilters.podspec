@@ -23,5 +23,7 @@ Pod::Spec.new do |s|
   s.source_files = 'ImageFilters/*.[hm]'
   s.public_header_files = 'ImageFilters/*.h'
 
+  s.resources = ['ImageFilters/*.png']
+
   s.frameworks = 'UIKit', 'Accelerate', 'CoreImage'
 end

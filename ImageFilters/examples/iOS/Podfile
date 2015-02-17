@@ -1,8 +1,7 @@
-# Uncomment this line to define a global platform for your project
 platform :ios, '7.0'
 
 target 'ImageFilterExample' do
-
+  pod 'ImageFilters', :git => 'https://github.com/jameswomack/iOS-Image-Filters.git'
 end
 
 target 'ImageFilterExampleTests' do
