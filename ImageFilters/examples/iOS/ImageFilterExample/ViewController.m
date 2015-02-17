@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ImageFilter.h"
+#import <ImageFilters/ImageFilter.h>
 
 @implementation ViewController
 

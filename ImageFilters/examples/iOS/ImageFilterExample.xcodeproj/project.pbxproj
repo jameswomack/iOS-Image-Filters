@@ -7,26 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B072F381911F7C7003A4716 /* UIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F371911F7C7003A4716 /* UIImage+Filter.m */; };
-		1B072F3B191208D8003A4716 /* CIFilter+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F3A191208D8003A4716 /* CIFilter+Filter.m */; };
-		1B072F3E19120AA5003A4716 /* CIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F3D19120AA5003A4716 /* CIImage+Filter.m */; };
-		1B072F4119121F85003A4716 /* ImageFilterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F4019121F85003A4716 /* ImageFilterCache.m */; };
-		1B0CDE451929EEE500251B38 /* NGFilterStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CDE441929EEE500251B38 /* NGFilterStore.m */; };
-		1B0CDE4B1929F09500251B38 /* NGFilterConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CDE4A1929F09500251B38 /* NGFilterConstructor.m */; };
-		1B0CDE4E1929F39000251B38 /* CIBlueMoodFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CDE4D1929F39000251B38 /* CIBlueMoodFilter.m */; };
 		1B78B36819108ADB00BEB3D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */; };
 		1B78B36C1910C66800BEB3D4 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B78B36B1910C66800BEB3D4 /* Accelerate.framework */; };
 		1B7E93E8192B006B008EB9EA /* north-park_sunflower.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7E93E6192B006B008EB9EA /* north-park_sunflower.png */; };
 		1B7E93E9192B006B008EB9EA /* north-park_sunflower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7E93E7192B006B008EB9EA /* north-park_sunflower@2x.png */; };
 		1B7E93ED192B0CD0008EB9EA /* AppDelegate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7E93EC192B0CD0008EB9EA /* AppDelegate.xib */; };
 		1B7E93EF192B0D31008EB9EA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7E93EE192B0D31008EB9EA /* ViewController.xib */; };
+		2D01F7D2F4A78F54E228F4DC /* libPods-ImageFilterExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 501124EED748F48EA4F5E43F /* libPods-ImageFilterExample.a */; };
 		59776F0215B4035300433DE9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0115B4035300433DE9 /* UIKit.framework */; };
 		59776F0415B4035300433DE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0315B4035300433DE9 /* Foundation.framework */; };
 		59776F0615B4035300433DE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F0515B4035300433DE9 /* CoreGraphics.framework */; };
 		59776F0E15B4035300433DE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59776F0D15B4035300433DE9 /* main.m */; };
 		59776F1215B4035300433DE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59776F1115B4035300433DE9 /* AppDelegate.m */; };
 		59776F1B15B4035300433DE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59776F1A15B4035300433DE9 /* ViewController.m */; };
-		59776F2915B40A3500433DE9 /* ImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 59776F2315B4038400433DE9 /* ImageFilter.m */; };
 		59776F2B15B40F3000433DE9 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59776F2A15B40F3000433DE9 /* CoreImage.framework */; };
 		59776F3215B413C000433DE9 /* crossprocess.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F2C15B413C000433DE9 /* crossprocess.png */; };
 		59776F3315B413C000433DE9 /* crossprocess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59776F2D15B413C000433DE9 /* crossprocess@2x.png */; };
@@ -49,21 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B072F361911F7C7003A4716 /* UIImage+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Filter.h"; path = "../../../UIImage+Filter.h"; sourceTree = "<group>"; };
-		1B072F371911F7C7003A4716 /* UIImage+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Filter.m"; path = "../../../UIImage+Filter.m"; sourceTree = "<group>"; };
-		1B072F39191208D8003A4716 /* CIFilter+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CIFilter+Filter.h"; path = "../../../CIFilter+Filter.h"; sourceTree = "<group>"; };
-		1B072F3A191208D8003A4716 /* CIFilter+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CIFilter+Filter.m"; path = "../../../CIFilter+Filter.m"; sourceTree = "<group>"; };
-		1B072F3C19120AA5003A4716 /* CIImage+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CIImage+Filter.h"; path = "../../../CIImage+Filter.h"; sourceTree = "<group>"; };
-		1B072F3D19120AA5003A4716 /* CIImage+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CIImage+Filter.m"; path = "../../../CIImage+Filter.m"; sourceTree = "<group>"; };
-		1B072F3F19121F85003A4716 /* ImageFilterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageFilterCache.h; path = ../../../ImageFilterCache.h; sourceTree = "<group>"; };
-		1B072F4019121F85003A4716 /* ImageFilterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageFilterCache.m; path = ../../../ImageFilterCache.m; sourceTree = "<group>"; };
-		1B072F42191226DC003A4716 /* Platforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platforms.h; path = ../../../Platforms.h; sourceTree = "<group>"; };
-		1B0CDE431929EEE500251B38 /* NGFilterStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NGFilterStore.h; path = ../../../NGFilterStore.h; sourceTree = "<group>"; };
-		1B0CDE441929EEE500251B38 /* NGFilterStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NGFilterStore.m; path = ../../../NGFilterStore.m; sourceTree = "<group>"; };
-		1B0CDE491929F09500251B38 /* NGFilterConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NGFilterConstructor.h; path = ../../../NGFilterConstructor.h; sourceTree = "<group>"; };
-		1B0CDE4A1929F09500251B38 /* NGFilterConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NGFilterConstructor.m; path = ../../../NGFilterConstructor.m; sourceTree = "<group>"; };
-		1B0CDE4C1929F39000251B38 /* CIBlueMoodFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIBlueMoodFilter.h; path = ../../../CIBlueMoodFilter.h; sourceTree = "<group>"; };
-		1B0CDE4D1929F39000251B38 /* CIBlueMoodFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CIBlueMoodFilter.m; path = ../../../CIBlueMoodFilter.m; sourceTree = "<group>"; };
 		1B78B36719108ADB00BEB3D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1B78B36B1910C66800BEB3D4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1B7E93E6192B006B008EB9EA /* north-park_sunflower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "north-park_sunflower.png"; sourceTree = "<group>"; };
@@ -71,6 +49,7 @@
 		1B7E93EC192B0CD0008EB9EA /* AppDelegate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppDelegate.xib; sourceTree = "<group>"; };
 		1B7E93EE192B0D31008EB9EA /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		4295E592912F069431050756 /* libPods-ImageFilterExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImageFilterExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		501124EED748F48EA4F5E43F /* libPods-ImageFilterExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImageFilterExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F0594EBC8BF414092B0F43 /* Pods-ImageFilterExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageFilterExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageFilterExampleTests/Pods-ImageFilterExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		59776EFD15B4035300433DE9 /* ImageFilterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59776F0115B4035300433DE9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -83,8 +62,6 @@
 		59776F1115B4035300433DE9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		59776F1915B4035300433DE9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		59776F1A15B4035300433DE9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		59776F2215B4038400433DE9 /* ImageFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImageFilter.h; path = ../../../ImageFilter.h; sourceTree = "<group>"; };
-		59776F2315B4038400433DE9 /* ImageFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ImageFilter.m; path = ../../../ImageFilter.m; sourceTree = "<group>"; };
 		59776F2A15B40F3000433DE9 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		59776F2C15B413C000433DE9 /* crossprocess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crossprocess.png; path = ../../../../crossprocess.png; sourceTree = "<group>"; };
 		59776F2D15B413C000433DE9 /* crossprocess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossprocess@2x.png"; path = "../../../../crossprocess@2x.png"; sourceTree = "<group>"; };
@@ -95,7 +72,9 @@
 		7384152C1A915A0A0018BFC1 /* ImageFilterExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFilterExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7384152F1A915A0A0018BFC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		738415301A915A0A0018BFC1 /* ImageFilterExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFilterExampleTests.m; sourceTree = "<group>"; };
+		9330F35BE90E99588A1AA185 /* Pods-ImageFilterExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageFilterExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageFilterExample/Pods-ImageFilterExample.release.xcconfig"; sourceTree = "<group>"; };
 		B555C471A62F4135C0383714 /* Pods-ImageFilterExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageFilterExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageFilterExampleTests/Pods-ImageFilterExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		C44D52FC67C2F8298D041EAC /* Pods-ImageFilterExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageFilterExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageFilterExample/Pods-ImageFilterExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +87,7 @@
 				59776F0615B4035300433DE9 /* CoreGraphics.framework in Frameworks */,
 				59776F0215B4035300433DE9 /* UIKit.framework in Frameworks */,
 				59776F0415B4035300433DE9 /* Foundation.framework in Frameworks */,
+				2D01F7D2F4A78F54E228F4DC /* libPods-ImageFilterExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +107,8 @@
 			children = (
 				52F0594EBC8BF414092B0F43 /* Pods-ImageFilterExampleTests.debug.xcconfig */,
 				B555C471A62F4135C0383714 /* Pods-ImageFilterExampleTests.release.xcconfig */,
+				C44D52FC67C2F8298D041EAC /* Pods-ImageFilterExample.debug.xcconfig */,
+				9330F35BE90E99588A1AA185 /* Pods-ImageFilterExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -169,6 +151,7 @@
 				59776F0315B4035300433DE9 /* Foundation.framework */,
 				59776F0515B4035300433DE9 /* CoreGraphics.framework */,
 				4295E592912F069431050756 /* libPods-ImageFilterExampleTests.a */,
+				501124EED748F48EA4F5E43F /* libPods-ImageFilterExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,30 +173,11 @@
 			children = (
 				1B78B3641910815500BEB3D4 /* IB */,
 				59776F2415B404F500433DE9 /* Images */,
-				59776F2115B4037A00433DE9 /* ImageFilter */,
 				59776F0915B4035300433DE9 /* ImageFilterExample-Info.plist */,
 				59776F0D15B4035300433DE9 /* main.m */,
 				59776F0F15B4035300433DE9 /* ImageFilterExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		59776F2115B4037A00433DE9 /* ImageFilter */ = {
-			isa = PBXGroup;
-			children = (
-				59776F2215B4038400433DE9 /* ImageFilter.h */,
-				59776F2315B4038400433DE9 /* ImageFilter.m */,
-				1B072F3F19121F85003A4716 /* ImageFilterCache.h */,
-				1B072F4019121F85003A4716 /* ImageFilterCache.m */,
-				1B0CDE491929F09500251B38 /* NGFilterConstructor.h */,
-				1B0CDE4A1929F09500251B38 /* NGFilterConstructor.m */,
-				1B0CDE431929EEE500251B38 /* NGFilterStore.h */,
-				1B0CDE441929EEE500251B38 /* NGFilterStore.m */,
-				1B072F42191226DC003A4716 /* Platforms.h */,
-				738415381A9198170018BFC1 /* CoreImageCategories */,
-				738415391A9198590018BFC1 /* UIKitCategories */,
-			);
-			name = ImageFilter;
 			sourceTree = "<group>";
 		};
 		59776F2415B404F500433DE9 /* Images */ = {
@@ -249,28 +213,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		738415381A9198170018BFC1 /* CoreImageCategories */ = {
-			isa = PBXGroup;
-			children = (
-				1B0CDE4C1929F39000251B38 /* CIBlueMoodFilter.h */,
-				1B0CDE4D1929F39000251B38 /* CIBlueMoodFilter.m */,
-				1B072F39191208D8003A4716 /* CIFilter+Filter.h */,
-				1B072F3A191208D8003A4716 /* CIFilter+Filter.m */,
-				1B072F3C19120AA5003A4716 /* CIImage+Filter.h */,
-				1B072F3D19120AA5003A4716 /* CIImage+Filter.m */,
-			);
-			name = CoreImageCategories;
-			sourceTree = "<group>";
-		};
-		738415391A9198590018BFC1 /* UIKitCategories */ = {
-			isa = PBXGroup;
-			children = (
-				1B072F361911F7C7003A4716 /* UIImage+Filter.h */,
-				1B072F371911F7C7003A4716 /* UIImage+Filter.m */,
-			);
-			name = UIKitCategories;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -278,9 +220,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 59776F1E15B4035300433DE9 /* Build configuration list for PBXNativeTarget "ImageFilterExample" */;
 			buildPhases = (
+				12055823E2068E051DD02930 /* Check Pods Manifest.lock */,
 				59776EF915B4035300433DE9 /* Sources */,
 				59776EFA15B4035300433DE9 /* Frameworks */,
 				59776EFB15B4035300433DE9 /* Resources */,
+				48143D3414E096C86CAEC6E5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -373,6 +317,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		12055823E2068E051DD02930 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		48143D3414E096C86CAEC6E5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageFilterExample/Pods-ImageFilterExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		563F049AD9F10C7116C1767E /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,17 +384,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B0CDE451929EEE500251B38 /* NGFilterStore.m in Sources */,
-				1B0CDE4E1929F39000251B38 /* CIBlueMoodFilter.m in Sources */,
 				59776F0E15B4035300433DE9 /* main.m in Sources */,
-				1B072F381911F7C7003A4716 /* UIImage+Filter.m in Sources */,
-				1B072F4119121F85003A4716 /* ImageFilterCache.m in Sources */,
 				59776F1215B4035300433DE9 /* AppDelegate.m in Sources */,
-				1B072F3E19120AA5003A4716 /* CIImage+Filter.m in Sources */,
-				59776F2915B40A3500433DE9 /* ImageFilter.m in Sources */,
 				59776F1B15B4035300433DE9 /* ViewController.m in Sources */,
-				1B072F3B191208D8003A4716 /* CIFilter+Filter.m in Sources */,
-				1B0CDE4B1929F09500251B38 /* NGFilterConstructor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +467,7 @@
 		};
 		59776F1F15B4035300433DE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C44D52FC67C2F8298D041EAC /* Pods-ImageFilterExample.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImageFilterExample/ImageFilterExample-Prefix.pch";
@@ -512,6 +479,7 @@
 		};
 		59776F2015B4035300433DE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9330F35BE90E99588A1AA185 /* Pods-ImageFilterExample.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImageFilterExample/ImageFilterExample-Prefix.pch";
