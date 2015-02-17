@@ -1,3 +1,4 @@
 xcuserdata
 *.xcworkspace
-examples/*/*/*.xcodeproj/xcuserdata/*
+ImageFilters/examples/*/*/*.xcodeproj/xcuserdata/*
+ImageFilters/examples/iOS/Pods/

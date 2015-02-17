@@ -11,9 +11,5 @@
 - (NGImage *)UIImage;
 - (NGImage *)UIImageFromExtent:(CGRect)extent;
 - (CIImage *)croppedForRadius:(float)radius;
-#if needsIOS8Features
-- (CIImage*)imageByClampingToExtent;
-#else
-- (CIImage*)jw_imageByClampingToExtent;
-#endif
+- (CIImage*)ng_imageByClampingToExtent;
 @end

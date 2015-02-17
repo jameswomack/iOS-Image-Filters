@@ -9,11 +9,7 @@
 #import "Platforms.h"
 
 @implementation NGImage (Filter)
-#if needsIOS8Features
-- (CIImage*)CIImage  {
-#else
-- (CIImage*)jw_CIImage {
-#endif
+- (CIImage*)ng_CIImage {
   return [CIImage imageWithCGImage:self.CGImage];
 }
 

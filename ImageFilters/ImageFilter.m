@@ -21,7 +21,6 @@
 #define Img(name) [NGImage imageNamed:name]
 #endif
 
-
 @implementation NGImage (ImageFilter)
 
 @dynamic previousState, filter;
@@ -433,19 +432,12 @@ static unsigned char morphological_kernel[9] = {
   NGImage *uiImage;
   
   if (!(uiImage = [ImageFilterCache cached:self.image forFilterName:filterName])) {
-#if needsIOS8Features
-    CIImage *image = self.image.CIImage;
-#else
-    CIImage *image = self.image.jw_CIImage;
-#endif
+
+    CIImage *image = self.image.ng_CIImage;
     
     BOOL shouldClamp = theParams.allKeys.count && theParams[@"inputRadius"];
     if (shouldClamp) {
-#if needsIOS8Features
-      image = [image imageByClampingToExtent];
-#else
-      image = [image jw_imageByClampingToExtent];
-#endif
+      image = [image ng_imageByClampingToExtent];
     }
     
     CIFilter *filter = [CIFilter withName:filterName andCIImage:image];
@@ -454,7 +446,7 @@ static unsigned char morphological_kernel[9] = {
       [filter setValue:obj forKey:key];
     }];
     
-    CIImage *outputImage = (CIImage *)objc_msgSend(filter, @selector(outputImage));
+    CIImage* outputImage = filter.outputImage;
     
     CGRect extent = shouldClamp ? (CGRect){.size = self.image.size} : outputImage.extent;
     self.image = uiImage = [outputImage UIImageFromExtent:extent];

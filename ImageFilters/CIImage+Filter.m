@@ -42,11 +42,7 @@
 }
 
 - (CIImage *)croppedForRadius:(float)radius {
-#if needsIOS8Features
-  CIImage *image = [self imageByClampingToExtent];
-#else
-  CIImage *image = [self jw_imageByClampingToExtent];
-#endif
+  CIImage *image = [self ng_imageByClampingToExtent];
 
   CGRect extent = image.extent;
   
@@ -60,11 +56,7 @@
   return [image imageByCroppingToRect:cropRect];
 }
 
-#if needsIOS8Features
-- (CIImage*)imageByClampingToExtent {
-#else
-- (CIImage*)jw_imageByClampingToExtent {
-#endif
+- (CIImage*)ng_imageByClampingToExtent {
   CGAffineTransform transform = CGAffineTransformIdentity;
   CIFilter *clamp = [CIFilter filterWithName:@"CIAffineClamp"];
   [clamp setValue:[NSValue valueWithBytes:&transform
