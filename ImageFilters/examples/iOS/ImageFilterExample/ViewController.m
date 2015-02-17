@@ -26,6 +26,7 @@
 }
 
 - (IBAction)filter:(UIButton *)__unused sender {
+  self.segControl.selectedSegmentIndex = UISegmentedControlNoSegment;
   UIImage *image = [self.originalImage copy];
   dispatch_async(dispatch_get_main_queue(), ^{
     self.imageView.image = [image blueMood];
@@ -33,8 +34,17 @@
 }
 
 - (IBAction)revert:(UIButton *)__unused sender {
+  self.segControl.selectedSegmentIndex = UISegmentedControlNoSegment;
   self.imageView.image = self.originalImage;
   self.imageView.image.filter = nil;
+}
+
+- (IBAction)toggle:(UISegmentedControl *)sender {
+  if (!sender.selectedSegmentIndex) {
+    [self filter:nil];
+  }else{
+    [self revert:nil];
+  }
 }
 
 @end

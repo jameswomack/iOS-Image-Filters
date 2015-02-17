@@ -12,8 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIImage *originalImage;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segControl;
 
 - (IBAction)filter:(UIButton *)sender;
 - (IBAction)revert:(UIButton *)sender;
+- (IBAction)toggle:(UISegmentedControl *)sender;
 
 @end
