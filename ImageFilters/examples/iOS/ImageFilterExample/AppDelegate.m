@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ImageFilter.h"
+#import <ImageFilters/ImageFilter.h>
 
 @implementation AppDelegate
 
