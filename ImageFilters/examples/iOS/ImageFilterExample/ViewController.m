@@ -36,7 +36,6 @@
 - (IBAction)revert:(UIButton *)__unused sender {
   self.segControl.selectedSegmentIndex = UISegmentedControlNoSegment;
   self.imageView.image = self.originalImage;
-  self.imageView.image.filter = nil;
 }
 
 - (IBAction)toggle:(UISegmentedControl *)sender {
