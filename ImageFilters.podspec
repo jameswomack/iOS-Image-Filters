@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ImageFilters"
-  s.version          = "0.2.0"
+  s.version          = "0.3.0"
   s.summary          = "High-level image/photo filtering on iOS & Mac"
   s.homepage         = "https://github.com/jameswomack/iOS-Image-Filters"
   s.license          = 'MIT'

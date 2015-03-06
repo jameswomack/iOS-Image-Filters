@@ -19,6 +19,12 @@
 @dynamic originalImage, flippedImage;
 
 
+- (void)viewDidAppear {
+  [super viewDidAppear];
+  currentImage = self.originalImage;
+}
+
+
 - (NSImage *)originalImage {
   !originalImage && (originalImage = self.imageView.image);
   return originalImage;
@@ -31,6 +37,10 @@
 
 - (IBAction)toggle:(NSClickGestureRecognizer *)sender
 {
+  if (sender.state != NSGestureRecognizerStateEnded) {
+    return;
+  }
+  
   if (!currentImage || [currentImage isEqual:self.flippedImage]) {
     currentImage = self.originalImage;
   }else if ([currentImage isEqual:self.originalImage]) {
@@ -38,13 +48,11 @@
   }
   
   self.imageView.image = currentImage;
-  [self.imageView setNeedsDisplay];
 }
 
 - (IBAction)sharpify:(NSButton *)sender
 {
-  self.imageView.image = self.originalImage.sharpify;
-  [self.imageView setNeedsDisplay];
+  self.imageView.image = currentImage.sharpify.crossProcess;
 }
 
 - (IBAction)previousState:(NSButton *)sender

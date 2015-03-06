@@ -22,25 +22,12 @@
 
 @implementation NGImage (ImageFilter)
 
-static NSCache *cache;
-
 @dynamic filter;
 
 - (ImageFilter*)filter {
-  if (!cache) {
-    cache = NSCache.new;
-    cache.countLimit = 10;
-  }
-  
-  ImageFilter *_filter;
-
-  if (!(_filter = [cache objectForKey:self.description])) {
-    _filter = ImageFilter.new;
-    _filter.image = self;
-    [cache setObject:_filter forKey:self.description];
-  }
-  
-  return _filter;
+  ImageFilter *filter = ImageFilter.new;
+  filter.image = self;
+  return filter;
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
