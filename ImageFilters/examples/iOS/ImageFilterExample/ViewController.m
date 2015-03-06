@@ -29,7 +29,7 @@
   self.segControl.selectedSegmentIndex = UISegmentedControlNoSegment;
   UIImage *image = [self.originalImage copy];
   dispatch_async(dispatch_get_main_queue(), ^{
-    self.imageView.image = [image blueMood];
+    self.imageView.image = [image crossProcess];
   });
 }
 

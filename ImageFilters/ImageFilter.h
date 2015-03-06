@@ -57,8 +57,7 @@ typedef enum {
 
 @interface NGImage (ImageFilter) <NGFilterProtocol>
 
-@property (weak, nonatomic) NGImage* previousState;
-@property (strong, nonatomic) ImageFilter* filter;
+@property (strong, nonatomic, readonly) ImageFilter* filter;
 
 @end
 

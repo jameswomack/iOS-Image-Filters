@@ -11,7 +11,6 @@
 		1B072F4D1912275A003A4716 /* CIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F461912275A003A4716 /* CIImage+Filter.m */; };
 		1B072F4E1912275A003A4716 /* ImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F481912275A003A4716 /* ImageFilter.m */; };
 		1B072F4F1912275A003A4716 /* UIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F4B1912275A003A4716 /* UIImage+Filter.m */; };
-		1B072F5519122D5F003A4716 /* ImageFilterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B072F5419122D5F003A4716 /* ImageFilterCache.m */; };
 		1B0CDE571929FCA700251B38 /* CIBlueMoodFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CDE561929FCA700251B38 /* CIBlueMoodFilter.m */; };
 		1B78B37D1910DB4200BEB3D4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B78B37C1910DB4200BEB3D4 /* Cocoa.framework */; };
 		1B78B3871910DB4200BEB3D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B78B3851910DB4200BEB3D4 /* InfoPlist.strings */; };
@@ -25,6 +24,7 @@
 		1B78B3A71910DB4300BEB3D4 /* ImageFilterExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78B3A61910DB4300BEB3D4 /* ImageFilterExampleTests.m */; };
 		1B78B3B71910DC2E00BEB3D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78B3B61910DC2E00BEB3D4 /* ViewController.m */; };
 		1B7E93F1192B15E4008EB9EA /* north-park_sunflower.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7E93F0192B15E4008EB9EA /* north-park_sunflower.png */; };
+		73FAECD71A95A9FA00596D57 /* north-park_sunflower_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 73FAECD61A95A9FA00596D57 /* north-park_sunflower_flipped.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +47,6 @@
 		1B072F491912275A003A4716 /* Platforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platforms.h; path = ../../../Platforms.h; sourceTree = "<group>"; };
 		1B072F4A1912275A003A4716 /* UIImage+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Filter.h"; path = "../../../UIImage+Filter.h"; sourceTree = "<group>"; };
 		1B072F4B1912275A003A4716 /* UIImage+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Filter.m"; path = "../../../UIImage+Filter.m"; sourceTree = "<group>"; };
-		1B072F5319122D5F003A4716 /* ImageFilterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageFilterCache.h; path = ../../../ImageFilterCache.h; sourceTree = "<group>"; };
-		1B072F5419122D5F003A4716 /* ImageFilterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageFilterCache.m; path = ../../../ImageFilterCache.m; sourceTree = "<group>"; };
 		1B0CDE551929FCA700251B38 /* CIBlueMoodFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIBlueMoodFilter.h; path = ../../../CIBlueMoodFilter.h; sourceTree = "<group>"; };
 		1B0CDE561929FCA700251B38 /* CIBlueMoodFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CIBlueMoodFilter.m; path = ../../../CIBlueMoodFilter.m; sourceTree = "<group>"; };
 		1B78B3791910DB4200BEB3D4 /* ImageFilterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +70,7 @@
 		1B78B3B51910DC2E00BEB3D4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1B78B3B61910DC2E00BEB3D4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1B7E93F0192B15E4008EB9EA /* north-park_sunflower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "north-park_sunflower.png"; path = "../../iOS/ImageFilterExample/Images/north-park_sunflower.png"; sourceTree = "<group>"; };
+		73FAECD61A95A9FA00596D57 /* north-park_sunflower_flipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "north-park_sunflower_flipped.png"; path = "../../iOS/ImageFilterExample/Images/north-park_sunflower_flipped.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				1B7E93F0192B15E4008EB9EA /* north-park_sunflower.png */,
+				73FAECD61A95A9FA00596D57 /* north-park_sunflower_flipped.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -198,8 +198,6 @@
 				1B072F481912275A003A4716 /* ImageFilter.m */,
 				1B0CDE551929FCA700251B38 /* CIBlueMoodFilter.h */,
 				1B0CDE561929FCA700251B38 /* CIBlueMoodFilter.m */,
-				1B072F5319122D5F003A4716 /* ImageFilterCache.h */,
-				1B072F5419122D5F003A4716 /* ImageFilterCache.m */,
 				1B072F491912275A003A4716 /* Platforms.h */,
 				1B072F4A1912275A003A4716 /* UIImage+Filter.h */,
 				1B072F4B1912275A003A4716 /* UIImage+Filter.m */,
@@ -288,6 +286,7 @@
 				1B78B3951910DB4200BEB3D4 /* Images.xcassets in Resources */,
 				1B7E93F1192B15E4008EB9EA /* north-park_sunflower.png in Resources */,
 				1B78B3931910DB4200BEB3D4 /* MainMenu.xib in Resources */,
+				73FAECD71A95A9FA00596D57 /* north-park_sunflower_flipped.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +308,6 @@
 				1B78B3891910DB4200BEB3D4 /* main.m in Sources */,
 				1B072F4E1912275A003A4716 /* ImageFilter.m in Sources */,
 				1B072F4D1912275A003A4716 /* CIImage+Filter.m in Sources */,
-				1B072F5519122D5F003A4716 /* ImageFilterCache.m in Sources */,
 				1B78B3B71910DC2E00BEB3D4 /* ViewController.m in Sources */,
 				1B0CDE571929FCA700251B38 /* CIBlueMoodFilter.m in Sources */,
 				1B78B3901910DB4200BEB3D4 /* NGAppDelegate.m in Sources */,
@@ -444,6 +442,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImageFilterExample/ImageFilterExample-Prefix.pch";
 				INFOPLIST_FILE = "ImageFilterExample/ImageFilterExample-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "-Wall";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -458,6 +457,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImageFilterExample/ImageFilterExample-Prefix.pch";
 				INFOPLIST_FILE = "ImageFilterExample/ImageFilterExample-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

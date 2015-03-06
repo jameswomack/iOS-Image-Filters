@@ -11,7 +11,6 @@
 #import "UIImage+Filter.h"
 #import "CIFilter+Filter.h"
 #import "CIImage+Filter.h"
-#import "ImageFilterCache.h"
 #import "CIBlueMoodFilter.h"
 #import <Accelerate/Accelerate.h>
 #import <mach/mach_time.h>
@@ -23,30 +22,25 @@
 
 @implementation NGImage (ImageFilter)
 
-@dynamic previousState, filter;
+static NSCache *cache;
 
-static NGImage* _previousState;
-static ImageFilter* _filter;
-
-- (NGImage*)previousState {
-  _filter = nil;
-  return _previousState?_previousState:self;
-}
-
-- (void)setPreviousState:(NGImage *)previousState {
-  _previousState = previousState;
-}
+@dynamic filter;
 
 - (ImageFilter*)filter {
-  if (!_filter) {
+  if (!cache) {
+    cache = NSCache.new;
+    cache.countLimit = 10;
+  }
+  
+  ImageFilter *_filter;
+
+  if (!(_filter = [cache objectForKey:self.description])) {
     _filter = ImageFilter.new;
     _filter.image = self;
+    [cache setObject:_filter forKey:self.description];
   }
+  
   return _filter;
-}
-
-- (void)setFilter:(ImageFilter *)filter {
-  _filter = filter;
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
@@ -58,7 +52,6 @@ static ImageFilter* _filter;
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation  {
-	_previousState = self;
 	[invocation invokeWithTarget:self.filter];
 }
 
@@ -209,13 +202,13 @@ static ImageFilter* _filter;
   NGImage *img = [self colorMatrix:@[@1.f,@.6f,@.3f,@1.f,@.2f]];
   
   return [img filter:@"CIColorControls"
-              params:@{@"inputBrightness": @.4f, @"inputConstrast": @3.0f}];
+              params:@{@"inputBrightness": @.4f, @"inputContrast": @3.0f}];
 }
 
 - (NGImage*)polarize {
   NGImage *img = [self colorMatrix:@[@1.f,@.5f,@1.f,@1.f,@.2f]];
   
-  return [img filter:@"CIColorControls" params:@{@"inputBrightness": @.4f, @"inputConstrast": @3.0f}];
+  return [img filter:@"CIColorControls" params:@{@"inputBrightness": @.4f, @"inputContrast": @3.0f}];
 }
 
 - (NGImage*)envy {   
@@ -242,12 +235,12 @@ static ImageFilter* _filter;
 
 - (NGImage*)brightness:(float)amount {
   return [self.image filter:@"CIColorControls"
-                     params:@{@"inputBrightness": @(amount), @"inputConstrast": @1.05f}];
+                     params:@{@"inputBrightness": @(amount), @"inputContrast": @1.05f}];
 }
 
 - (NGImage*)brightness:(float)brightness andConstrast:(float)contrast {
   return [self.image filter:@"CIColorControls"
-                     params:@{@"inputBrightness": @(brightness), @"inputConstrast": @(contrast)}];
+                     params:@{@"inputBrightness": @(brightness), @"inputContrast": @(contrast)}];
 }
 
 static unsigned char morphological_kernel[9] = {
@@ -367,7 +360,7 @@ static unsigned char morphological_kernel[9] = {
 
 - (NGImage*)crossProcess {
   NGImage *img = [self.image filter:@"CIColorControls"
-                             params:@{kCIInputSaturationKey: @.4f, @"inputConstrast": @1.0f}];
+                             params:@{kCIInputSaturationKey: @.4f, @"inputContrast": @1.0f}];
   
   img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
   
@@ -379,7 +372,7 @@ static unsigned char morphological_kernel[9] = {
 }
 
 - (NGImage*)magichour {
-  NGImage *img = [self.image filter:@"CIColorControls" params:@{@"inputConstrast": @1.0f}];
+  NGImage *img = [self.image filter:@"CIColorControls" params:@{@"inputContrast": @1.0f}];
   img = [img imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeScale];
   CIImage *backgroundImage = [CIImage imageWithCGImage:img.CGImage];
   NGImage *i = [Img(@"magichour") imageToFitSize:CGSizeMake(self.image.size.width*self.image.scale, self.image.size.height*self.image.scale) method:IFResizeCrop];
@@ -410,7 +403,7 @@ static unsigned char morphological_kernel[9] = {
 
 - (NGImage*)contrast:(float)amount {
   return [self.image filter:@"CIColorControls"
-                     params:@{@"inputConstrast": @(amount*4)}];
+                     params:@{@"inputContrast": @(amount*4)}];
 }
 
 - (NGImage*)gamma:(float)amount {
@@ -431,28 +424,23 @@ static unsigned char morphological_kernel[9] = {
 - (NGImage *)filter:(NSString *)filterName params:(NSDictionary *)theParams {
   NGImage *uiImage;
   
-  if (!(uiImage = [ImageFilterCache cached:self.image forFilterName:filterName])) {
-
-    CIImage *image = self.image.ng_CIImage;
-    
-    BOOL shouldClamp = theParams.allKeys.count && theParams[@"inputRadius"];
-    if (shouldClamp) {
-      image = [image ng_imageByClampingToExtent];
-    }
-    
-    CIFilter *filter = [CIFilter withName:filterName andCIImage:image];
-    
-    [theParams enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop __unused) {
-      [filter setValue:obj forKey:key];
-    }];
-    
-    CIImage* outputImage = filter.outputImage;
-    
-    CGRect extent = shouldClamp ? (CGRect){.size = self.image.size} : outputImage.extent;
-    self.image = uiImage = [outputImage UIImageFromExtent:extent];
-    
-    [ImageFilterCache cache:self.image forFilterName:filterName];
+  CIImage *image = self.image.ng_CIImage;
+  
+  BOOL shouldClamp = theParams.allKeys.count && theParams[@"inputRadius"];
+  if (shouldClamp) {
+    image = [image ng_imageByClampingToExtent];
   }
+  
+  CIFilter *filter = [CIFilter withName:filterName andCIImage:image];
+  
+  [theParams enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop __unused) {
+    [filter setValue:obj forKey:key];
+  }];
+  
+  CIImage* outputImage = filter.outputImage;
+  
+  CGRect extent = shouldClamp ? (CGRect){.size = self.image.size} : outputImage.extent;
+  self.image = uiImage = [outputImage UIImageFromExtent:extent];
   
 	return uiImage;
 }

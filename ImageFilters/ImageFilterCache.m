@@ -13,6 +13,7 @@ static NSCache *cache;
 
 + (void)initialize {
   cache = NSCache.new;
+  cache.countLimit = 20;
 }
 
 + (NGImage *)cached:(NGImage *)image forFilterName:(NSString *)filterName {
@@ -26,8 +27,8 @@ static NSCache *cache;
   return image;
 }
 
-+ (NSString *)keyForImage:(NGImage *)__unused image andFilterName:(NSString *)filterName {
-  return [NSString stringWithFormat:@"%@", filterName];
++ (NSString *)keyForImage:(NGImage *)image andFilterName:(NSString *)filterName {
+  return [NSString stringWithFormat:@"%@_%@", image, filterName];
 }
 
 @end
